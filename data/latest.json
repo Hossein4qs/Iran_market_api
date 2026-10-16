@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-16T15:40:52+03:30",
+  "items": {
+    "dollar": {
+      "fa": "دلار",
+      "price": 2679000.0,
+      "change": 0.0,
+      "percent": 0
+    },
+    "euro": {
+      "fa": "یورو",
+      "price": 3002800.0,
+      "change": 0.0,
+      "percent": 0
+    },
+    "gold18": {
+      "fa": "طلا ۱۸ عیار",
+      "price": 262551000.0,
+      "change": 0.0,
+      "percent": 0
+    },
+    "coin": {
+      "fa": "سکه امامی",
+      "price": 2699200000.0,
+      "change": 0.0,
+      "percent": 0
+    },
+    "ons": {
+      "fa": "اونس طلا",
+      "price": 4177.57,
+      "change": 6.58,
+      "percent": 0.16
+    }
+  }
+}
