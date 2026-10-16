@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>قیمت‌ها</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--fg:#14181f;--mut:#6b7280;--line:#e3e6ea;--acc:#0b6e5c;--up:#0b6e5c;--down:#b42318}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1318;--card:#171c23;--fg:#e8ebef;--mut:#8a93a0;--line:#262d37;--acc:#4cc2a8;--up:#4cc2a8;--down:#f08a80}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.7 Vazirmatn,Tahoma,sans-serif}
+main{max-width:860px;margin:0 auto;padding:20px 16px}
+h1{font-size:20px;margin:0 0 4px}.sub{color:var(--mut);font-size:13px;margin-bottom:16px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--fg);padding:8px 14px;border-radius:8px;cursor:pointer;font:inherit}
+.tab[aria-pressed=true]{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
+.tab:focus-visible,.rng button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px}
+.price{font-size:32px;font-weight:700}.chg{font-size:14px;margin-inline-start:8px}
+.up{color:var(--up)}.down{color:var(--down)}
+.rng{display:flex;gap:6px;margin:12px 0}.rng button{border:0;background:none;color:var(--mut);padding:4px 10px;border-radius:6px;cursor:pointer;font:inherit}
+.rng button[aria-pressed=true]{background:var(--line);color:var(--fg)}
+svg{width:100%;height:260px;display:block;direction:ltr}
+.tip{color:var(--mut);font-size:13px;min-height:22px;margin-top:6px}
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px}
+th,td{padding:6px 4px;border-bottom:1px solid var(--line);text-align:start}th{color:var(--mut);font-weight:400}
+</style>
+</head>
+<body><main>
+<h1>قیمت‌ها و تاریخچه</h1>
+<div class="sub" id="upd">در حال بارگذاری…</div>
+<div class="tabs" id="tabs"></div>
+<div class="panel">
+  <div><span class="price" id="price">—</span><span class="chg" id="chg"></span></div>
+  <div class="rng" id="rng"></div>
+  <svg id="chart" viewBox="0 0 800 260" preserveAspectRatio="none" role="img" aria-label="نمودار قیمت"></svg>
+  <div class="tip" id="tip"></div>
+  <table><thead><tr><th>تاریخ</th><th>باز</th><th>بالا</th><th>پایین</th><th>بسته</th></tr></thead><tbody id="rows"></tbody></table>
+</div>
+</main>
+<script>
+const fmt=n=>Math.round(n).toLocaleString("fa-IR");
+const $=id=>document.getElementById(id);
+let latest,hist=[],cur,days=30;
+const RANGES=[[7,"۷ روز"],[30,"۳۰ روز"],[90,"۹۰ روز"],[365,"۱ سال"],[0,"همه"]];
+
+async function j(u){const r=await fetch(u+"?t="+Date.now());if(!r.ok)throw new Error(u);return r.json()}
+
+async function init(){
+  try{latest=await j("data/latest.json")}catch(e){$("upd").textContent="داده‌ای پیدا نشد. اول workflow را یک بار اجرا کن.";return}
+  $("upd").textContent="آخرین به‌روزرسانی: "+new Date(latest.updated).toLocaleString("fa-IR");
+  const names=Object.keys(latest.items);
+  $("tabs").innerHTML=names.map(n=>`<button class="tab" data-n="${n}" aria-pressed="false">${latest.items[n].fa}</button>`).join("");
+  $("tabs").onclick=e=>{const b=e.target.closest(".tab");if(b)select(b.dataset.n)};
+  $("rng").innerHTML=RANGES.map(([d,l])=>`<button data-d="${d}" aria-pressed="${d===days}">${l}</button>`).join("");
+  $("rng").onclick=e=>{const b=e.target.closest("button");if(!b)return;days=+b.dataset.d;
+    [...$("rng").children].forEach(x=>x.setAttribute("aria-pressed",x===b));draw()};
+  select(names[0]);
+}
+async function select(n){
+  cur=n;
+  [...$("tabs").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.n===n));
+  const it=latest.items[n];
+  $("price").textContent=fmt(it.price);
+  const c=it.change;
+  $("chg").textContent=c==null?"":(c>0?"▲ ":c<0?"▼ ":"")+fmt(Math.abs(c))+(it.percent?` (${it.percent}%)`:"");
+  $("chg").className="chg "+(c>0?"up":c<0?"down":"");
+  try{hist=await j(`data/history/${n}.json`)}catch(e){hist=[]}
+  draw();
+}
+function draw(){
+  const d=days?hist.slice(-days):hist, svg=$("chart");
+  $("rows").innerHTML=d.slice(-15).reverse().map(r=>`<tr><td>${new Date(r.date).toLocaleDateString("fa-IR")}</td><td>${fmt(r.open)}</td><td>${fmt(r.high)}</td><td>${fmt(r.low)}</td><td>${fmt(r.close)}</td></tr>`).join("");
+  if(d.length<2){svg.innerHTML=`<text x="400" y="130" text-anchor="middle" fill="currentColor" opacity=".5">هنوز داده کافی برای نمودار نیست</text>`;$("tip").textContent="";return}
+  const W=800,H=260,P=8,v=d.map(r=>r.close),mn=Math.min(...v),mx=Math.max(...v),sp=(mx-mn)||1;
+  const x=i=>P+i*(W-2*P)/(d.length-1), y=val=>H-P-(val-mn)/sp*(H-2*P);
+  const pts=d.map((r,i)=>`${x(i).toFixed(1)},${y(r.close).toFixed(1)}`).join(" ");
+  svg.innerHTML=`<polyline points="${pts}" fill="none" stroke="var(--acc)" stroke-width="2" vector-effect="non-scaling-stroke"/>
+  <line id="cl" y1="0" y2="${H}" stroke="var(--mut)" opacity="0" vector-effect="non-scaling-stroke"/>`;
+  svg.onpointermove=e=>{const b=svg.getBoundingClientRect(),f=Math.min(1,Math.max(0,(e.clientX-b.left)/b.width));
+    const i=Math.round(f*(d.length-1)),r=d[i],cl=$("cl");cl.setAttribute("x1",x(i));cl.setAttribute("x2",x(i));cl.setAttribute("opacity",.6);
+    $("tip").textContent=`${new Date(r.date).toLocaleDateString("fa-IR")} — بسته: ${fmt(r.close)}  (بالا ${fmt(r.high)} / پایین ${fmt(r.low)})`};
+}
+init();
+</script>
+</body></html>
