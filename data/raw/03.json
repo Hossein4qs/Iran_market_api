@@ -1,5 +1,5 @@
 {
- "url": "https://chande.net/api/v1/prices/current?_=1792165373911",
+ "url": "https://chande.net/api/v1/prices/current?_=1792165846744",
  "data": {
   "prices": [
    {
@@ -17,7 +17,7 @@
     "bubbleToman": null,
     "change24h": -0.11,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -35,7 +35,7 @@
     "bubbleToman": null,
     "change24h": -0.11,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -48,13 +48,13 @@
     "priceBuy": 217156353600,
     "priceSell": 217156353600,
     "priceToman": 21715635360,
-    "priceUsd": 81561.39,
+    "priceUsd": 81620.31,
     "bubble": null,
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
-    "source": "bonbast"
+    "updatedAt": "2026-10-16T15:50:23.003180",
+    "source": "navasan"
    },
    {
     "symbol": "ETH",
@@ -63,15 +63,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 4,
-    "priceBuy": 6431331800,
-    "priceSell": 6431331800,
-    "priceToman": 643133180,
+    "priceBuy": 6424187100,
+    "priceSell": 6424187100,
+    "priceToman": 642418710,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.16,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.11,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -81,15 +81,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 8,
-    "priceBuy": 1909810000,
-    "priceSell": 1909810000,
-    "priceToman": 190981000,
+    "priceBuy": 1908864000,
+    "priceSell": 1908864000,
+    "priceToman": 190886400,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.12,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.05,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -99,15 +99,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 8,
-    "priceBuy": 310000,
-    "priceSell": 310000,
-    "priceToman": 31000,
+    "priceBuy": 309800,
+    "priceSell": 309800,
+    "priceToman": 30980,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.16,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.06,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -125,7 +125,7 @@
     "bubbleToman": null,
     "change24h": 0.09,
     "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -135,15 +135,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 10,
-    "priceBuy": 275419000,
-    "priceSell": 275419000,
-    "priceToman": 27541900,
+    "priceBuy": 275211200,
+    "priceSell": 275211200,
+    "priceToman": 27521120,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.16,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.08,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -161,7 +161,7 @@
     "bubbleToman": null,
     "change24h": 0.26,
     "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -171,15 +171,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 11,
-    "priceBuy": 26801600,
-    "priceSell": 26801600,
-    "priceToman": 2680160,
+    "priceBuy": 26773000,
+    "priceSell": 26773000,
+    "priceToman": 2677300,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": -0.05,
+    "change24h": -0.11,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -197,7 +197,7 @@
     "bubbleToman": null,
     "change24h": 0.31,
     "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -215,7 +215,7 @@
     "bubbleToman": null,
     "change24h": -0.12,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -225,15 +225,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 14,
-    "priceBuy": 129522100,
-    "priceSell": 129522100,
-    "priceToman": 12952210,
+    "priceBuy": 129744300,
+    "priceSell": 129744300,
+    "priceToman": 12974430,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.16,
+    "change24h": 0.17,
     "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -251,7 +251,7 @@
     "bubbleToman": null,
     "change24h": 0.13,
     "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -261,15 +261,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 16,
-    "priceBuy": 32634900,
-    "priceSell": 32634900,
-    "priceToman": 3263490,
+    "priceBuy": 32627800,
+    "priceSell": 32627800,
+    "priceToman": 3262780,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.13,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.02,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -279,15 +279,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 16,
-    "priceBuy": 9774700,
-    "priceSell": 9774700,
-    "priceToman": 977470,
+    "priceBuy": 9767500,
+    "priceSell": 9767500,
+    "priceToman": 976750,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.15,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.07,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -297,15 +297,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 17,
-    "priceBuy": 19155300,
-    "priceSell": 19155300,
-    "priceToman": 1915530,
+    "priceBuy": 19212600,
+    "priceSell": 19212600,
+    "priceToman": 1921260,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.38,
+    "change24h": 0.3,
     "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -315,15 +315,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 17,
-    "priceBuy": 273100,
-    "priceSell": 273100,
-    "priceToman": 27310,
+    "priceBuy": 274100,
+    "priceSell": 274100,
+    "priceToman": 27410,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": -0.98,
-    "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": 0.37,
+    "changeDirection": "up",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -333,15 +333,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 18,
-    "priceBuy": 20975500,
-    "priceSell": 20975500,
-    "priceToman": 2097550,
+    "priceBuy": 20954000,
+    "priceSell": 20954000,
+    "priceToman": 2095400,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.17,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.1,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -351,15 +351,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 18,
-    "priceBuy": 416514600,
-    "priceSell": 416514600,
-    "priceToman": 41651460,
+    "priceBuy": 416944600,
+    "priceSell": 416944600,
+    "priceToman": 41694460,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": -0.03,
-    "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": 0.1,
+    "changeDirection": "up",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -369,15 +369,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 19,
-    "priceBuy": 3110100,
-    "priceSell": 3110100,
-    "priceToman": 311010,
+    "priceBuy": 3103000,
+    "priceSell": 3103000,
+    "priceToman": 310300,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.7,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.23,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -387,15 +387,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 20,
-    "priceBuy": 222800,
-    "priceSell": 222800,
-    "priceToman": 22280,
+    "priceBuy": 222400,
+    "priceSell": 222400,
+    "priceToman": 22240,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.13,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.18,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -405,15 +405,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 21,
-    "priceBuy": 8040500,
-    "priceSell": 8040500,
-    "priceToman": 804050,
+    "priceBuy": 8026200,
+    "priceSell": 8026200,
+    "priceToman": 802620,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.27,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.18,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -423,15 +423,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 22,
-    "priceBuy": 4307330900,
-    "priceSell": 4307330900,
-    "priceToman": 430733090,
+    "priceBuy": 4300558800,
+    "priceSell": 4300558800,
+    "priceToman": 430055880,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.16,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.16,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -441,15 +441,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 26,
-    "priceBuy": 13465300,
-    "priceSell": 13465300,
-    "priceToman": 1346530,
+    "priceBuy": 13408000,
+    "priceSell": 13408000,
+    "priceToman": 1340800,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.16,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.43,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -459,15 +459,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 27,
-    "priceBuy": 533424200,
-    "priceSell": 533424200,
-    "priceToman": 53342420,
+    "priceBuy": 534255500,
+    "priceSell": 534255500,
+    "priceToman": 53425550,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": -0.02,
-    "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": 0.16,
+    "changeDirection": "up",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -477,15 +477,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 28,
-    "priceBuy": 143500,
-    "priceSell": 143500,
-    "priceToman": 14350,
+    "priceBuy": 143400,
+    "priceSell": 143400,
+    "priceToman": 14340,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.14,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.07,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -503,7 +503,7 @@
     "bubbleToman": null,
     "change24h": -0.74,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -513,15 +513,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 30,
-    "priceBuy": 158208500,
-    "priceSell": 158208500,
-    "priceToman": 15820850,
+    "priceBuy": 158273000,
+    "priceSell": 158273000,
+    "priceToman": 15827300,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.16,
+    "change24h": 0.04,
     "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -531,15 +531,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 31,
-    "priceBuy": 1060600,
-    "priceSell": 1060600,
-    "priceToman": 106060,
+    "priceBuy": 1053400,
+    "priceSell": 1053400,
+    "priceToman": 105340,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": -0.67,
+    "change24h": -0.68,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -549,15 +549,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 31,
-    "priceBuy": 730939300,
-    "priceSell": 730939300,
-    "priceToman": 73093930,
+    "priceBuy": 732802600,
+    "priceSell": 732802600,
+    "priceToman": 73280260,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.14,
+    "change24h": 0.25,
     "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -575,7 +575,7 @@
     "bubbleToman": null,
     "change24h": -0.2,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -585,15 +585,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 32,
-    "priceBuy": 520900,
-    "priceSell": 520900,
-    "priceToman": 52090,
+    "priceBuy": 521000,
+    "priceSell": 521000,
+    "priceToman": 52100,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
     "change24h": 0.02,
     "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -603,15 +603,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 33,
-    "priceBuy": 593100,
-    "priceSell": 593100,
-    "priceToman": 59310,
+    "priceBuy": 594100,
+    "priceSell": 594100,
+    "priceToman": 59410,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.2,
+    "change24h": 0.17,
     "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -629,7 +629,7 @@
     "bubbleToman": null,
     "change24h": -0.2,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -639,15 +639,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 34,
-    "priceBuy": 3124500,
-    "priceSell": 3124500,
-    "priceToman": 312450,
+    "priceBuy": 3110100,
+    "priceSell": 3110100,
+    "priceToman": 311010,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.46,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.46,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -657,15 +657,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 35,
-    "priceBuy": 18300,
-    "priceSell": 18300,
-    "priceToman": 1830,
+    "priceBuy": 18400,
+    "priceSell": 18400,
+    "priceToman": 1840,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": -1.08,
-    "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": 0.55,
+    "changeDirection": "up",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -675,15 +675,15 @@
     "category": "crypto",
     "flag": null,
     "sortOrder": 37,
-    "priceBuy": 1442838100,
-    "priceSell": 1442838100,
-    "priceToman": 144283810,
+    "priceBuy": 1444558000,
+    "priceSell": 1444558000,
+    "priceToman": 144455800,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": -0.14,
-    "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": 0.12,
+    "changeDirection": "up",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -701,7 +701,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -719,7 +719,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -737,7 +737,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -755,7 +755,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -773,7 +773,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -791,7 +791,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -809,7 +809,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -827,7 +827,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -845,7 +845,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -863,7 +863,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:41:23.909836",
+    "updatedAt": "2026-10-16T15:50:23.003180",
     "source": "navasan"
    },
    {
@@ -881,7 +881,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -899,7 +899,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:41:23.909836",
+    "updatedAt": "2026-10-16T15:50:23.003180",
     "source": "navasan"
    },
    {
@@ -917,7 +917,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -935,7 +935,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -953,7 +953,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -971,7 +971,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -989,7 +989,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:41:23.909836",
+    "updatedAt": "2026-10-16T15:50:23.003180",
     "source": "navasan"
    },
    {
@@ -1007,7 +1007,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -1025,7 +1025,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:41:23.909836",
+    "updatedAt": "2026-10-16T15:50:23.003180",
     "source": "navasan"
    },
    {
@@ -1043,7 +1043,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -1061,7 +1061,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -1079,7 +1079,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -1097,7 +1097,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -1115,7 +1115,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:41:23.909836",
+    "updatedAt": "2026-10-16T15:50:23.003180",
     "source": "navasan"
    },
    {
@@ -1133,7 +1133,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -1151,7 +1151,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -1169,7 +1169,7 @@
     "bubbleToman": null,
     "change24h": -0.18,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -1187,7 +1187,7 @@
     "bubbleToman": null,
     "change24h": -0.18,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -1205,7 +1205,7 @@
     "bubbleToman": null,
     "change24h": -0.19,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -1223,7 +1223,7 @@
     "bubbleToman": null,
     "change24h": -0.19,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -1241,7 +1241,7 @@
     "bubbleToman": null,
     "change24h": -0.18,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -1259,7 +1259,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -1277,7 +1277,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -1295,7 +1295,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -1313,7 +1313,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -1331,7 +1331,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -1342,33 +1342,33 @@
     "flag": null,
     "sortOrder": 6,
     "priceBuy": null,
-    "priceSell": 261346320,
-    "priceToman": 26134632,
+    "priceSell": 261207810,
+    "priceToman": 26120781,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
     "symbol": "GOLD_24K",
     "nameEn": "24 Karat Gold",
     "nameFa": "طلای 24 عیار",
-    "category": "gold",
+    "category": "commodity",
     "flag": null,
     "sortOrder": 7,
     "priceBuy": 11064524300,
     "priceSell": 11064524300,
     "priceToman": 1106452430,
-    "priceUsd": 4177.65,
+    "priceUsd": 4174.1,
     "bubble": null,
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
-    "source": "bonbast"
+    "updatedAt": "2026-10-16T15:50:23.003180",
+    "source": "navasan"
    },
    {
     "symbol": "GOLD_MESGHAL",
@@ -1378,14 +1378,14 @@
     "flag": null,
     "sortOrder": 8,
     "priceBuy": null,
-    "priceSell": 1132100000,
-    "priceToman": 113210000,
+    "priceSell": 1131500000,
+    "priceToman": 113150000,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:42:18.886008",
+    "updatedAt": "2026-10-16T15:50:18.466326",
     "source": "bonbast"
    },
    {
@@ -1403,7 +1403,7 @@
     "bubbleToman": null,
     "change24h": null,
     "changeDirection": null,
-    "updatedAt": "2026-10-16T15:41:23.909836",
+    "updatedAt": "2026-10-16T15:50:23.003180",
     "source": "navasan"
    },
    {
@@ -1413,15 +1413,15 @@
     "category": "remittance",
     "flag": null,
     "sortOrder": 1,
-    "priceBuy": 3035800,
-    "priceSell": 3035800,
-    "priceToman": 303580,
+    "priceBuy": 3034500,
+    "priceSell": 3034500,
+    "priceToman": 303450,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": -0.03,
+    "change24h": -0.04,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -1431,15 +1431,15 @@
     "category": "remittance",
     "flag": null,
     "sortOrder": 2,
-    "priceBuy": 3562400,
-    "priceSell": 3562400,
-    "priceToman": 356240,
+    "priceBuy": 3561300,
+    "priceSell": 3561300,
+    "priceToman": 356130,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": -0.05,
+    "change24h": -0.03,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -1449,15 +1449,15 @@
     "category": "remittance",
     "flag": null,
     "sortOrder": 3,
-    "priceBuy": 1858300,
-    "priceSell": 1858300,
-    "priceToman": 185830,
+    "priceBuy": 1857600,
+    "priceSell": 1857600,
+    "priceToman": 185760,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": 0.02,
-    "changeDirection": "up",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": -0.04,
+    "changeDirection": "down",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -1467,15 +1467,15 @@
     "category": "remittance",
     "flag": null,
     "sortOrder": 4,
-    "priceBuy": 407100,
-    "priceSell": 407100,
-    "priceToman": 40710,
+    "priceBuy": 407200,
+    "priceSell": 407200,
+    "priceToman": 40720,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": -0.02,
-    "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "change24h": 0.02,
+    "changeDirection": "up",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -1493,7 +1493,7 @@
     "bubbleToman": null,
     "change24h": -0.58,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -1511,7 +1511,7 @@
     "bubbleToman": null,
     "change24h": -0.18,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -1529,7 +1529,7 @@
     "bubbleToman": null,
     "change24h": -0.53,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    },
    {
@@ -1539,20 +1539,20 @@
     "category": "remittance",
     "flag": null,
     "sortOrder": 7,
-    "priceBuy": 653700,
-    "priceSell": 653700,
-    "priceToman": 65370,
+    "priceBuy": 653500,
+    "priceSell": 653500,
+    "priceToman": 65350,
     "priceUsd": null,
     "bubble": null,
     "bubbleToman": null,
-    "change24h": -0.02,
+    "change24h": -0.03,
     "changeDirection": "down",
-    "updatedAt": "2026-10-16T15:40:06Z",
+    "updatedAt": "2026-10-16T15:50:10Z",
     "source": "navasan_aed"
    }
   ],
   "count": 86,
   "category": null,
-  "updated_at": "2026-10-16T15:42:54.363748"
+  "updated_at": "2026-10-16T15:50:47.136366"
  }
 }
