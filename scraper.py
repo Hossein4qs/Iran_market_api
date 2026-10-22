@@ -157,8 +157,11 @@ def parse_currency_row(row, cells):
         print(f"  ! ارز ناشناخته (نماد حدسی): {name}", file=sys.stderr)
         symbol, qty = key, 1
     per_usd = to_number(cell_text(cells[3])) if len(cells) > 3 else None
+    avg = (buy + sell) / 2
     return {"symbol": symbol, "name": name, "quantity": qty,
-            "buy": buy, "sell": sell, "per_usd": per_usd}
+            "buy": buy, "sell": sell,
+            "average": int(avg) if float(avg).is_integer() else avg,
+            "per_usd": per_usd}
 
 
 def parse_gold_row(row, cells):

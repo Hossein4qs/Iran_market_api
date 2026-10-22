@@ -21,7 +21,7 @@ https://raw.githubusercontent.com/<USER>/<REPO>/main/data/prices.json
   "updated_at_utc": "...", "updated_at_tehran": "...",
   "categories": {
     "currency": { "title": "ارز", "site_updated": "…", "items": [
-      { "symbol": "usd", "name": "دلار آمریکا", "quantity": 1, "buy": 267100, "sell": 269800, "per_usd": null } ] },
+      { "symbol": "usd", "name": "دلار آمریکا", "quantity": 1, "buy": 267100, "sell": 269800, "average": 268450, "per_usd": null } ] },
     "gold": { "items": [
       { "symbol": "sekkeh", "name": "سکه امامی (طرح جدید)", "price": 274000000, "unit": "toman",
         "change_percent": 0.5, "change_percent_abs": 0.5, "real_price": 259238000, "bubble": 9762000, "bubble_percent": 3.77 } ] },
@@ -32,6 +32,7 @@ https://raw.githubusercontent.com/<USER>/<REPO>/main/data/prices.json
 }
 ```
 - قیمت‌ها به **تومان** هستند، مگر `unit: "usd"` (مثلاً انس طلا).
+- `average` میانگین `buy` و `sell` است.
 - `quantity: 100` یعنی قیمت برای ۱۰۰ واحد است (مثل «صد ین»).
 - `change_percent` فقط وقتی علامت‌دار پر می‌شود که جهت تغییر (بالا/پایین) از صفحه قابل تشخیص باشد؛ وگرنه `null` است و مقدار خام در `change_percent_abs` می‌ماند.
 - `price_toman: null` برای رمزارزهایی است که الان‌چند برایشان قیمت تومانی ندارد (در سایت ۰ نمایش داده می‌شود).

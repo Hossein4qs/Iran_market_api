@@ -48,7 +48,7 @@ function chg(signedV, absV) {
 }
 const COLS = {
   currency: [["نام", i => `${esc(i.name)}<span class="sym">${esc(i.symbol)}</span>${i.quantity > 1 ? ` <span class="mut">(×${num(i.quantity)})</span>` : ""}`],
-             ["خرید", i => num(i.buy)], ["فروش", i => num(i.sell)], ["یک دلار چند؟", i => num(i.per_usd)]],
+             ["خرید", i => num(i.buy)], ["فروش", i => num(i.sell)], ["میانگین", i => num(i.average)], ["یک دلار چند؟", i => num(i.per_usd)]],
   gold:     [["نام", i => esc(i.name)],
              ["قیمت", i => num(i.price) + (i.unit === "usd" ? " $" : " تومان")],
              ["تغییر", i => chg(i.change_percent, i.change_percent_abs)],
