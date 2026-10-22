@@ -12,8 +12,8 @@
 ## دسترسی به JSON
 برای هر منبع یک فایل جدا:
 ```
-https://raw.githubusercontent.com/Hossein4qs/Iran_market_api/main/data/alanchand.json
-https://raw.githubusercontent.com/Hossein4qs/Iran_market_api/main/data/rialnerkh.json
+https://raw.githubusercontent.com/<USER>/<REPO>/main/data/alanchand.json
+https://raw.githubusercontent.com/<USER>/<REPO>/main/data/rialnerkh.json
 ```
 
 ## ساختار خروجی

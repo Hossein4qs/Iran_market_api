@@ -71,55 +71,102 @@ def classify(slug):
     return None
 
 
-def parse_row_text(text, slug):
-    """متن یک ردیف -> (نام، قیمت، تغییر مطلق با علامت، ساعت) یا None.
+RATE_HREF = re.compile(r"/rate/([^/?#]+)")
 
-    متن به شکل  «<آیکن> <نام> <CODE> <قیمت> ▲|▼ <تغییر> <ساعت>»  است و CODE همان slug بزرگ است.
-    """
+
+def _fix(v):
+    return None if v is None else (int(v) if float(v).is_integer() else v)
+
+
+def split_at_code(text, slug):
+    """متن را دور از CODE (همان slug بزرگ) به (قبل، بعد) می‌شکند؛ اگر CODE نبود None."""
     t = ascii_digits(text)
-    m = re.search(rf"(?<![A-Za-z0-9_]){re.escape(slug.upper())}(?![A-Za-z0-9_])", t)
-    if not m:
-        return None
-    head, rest = t[:m.start()], t[m.end():]
-    toks = head.split()
-    i = next((k for k, w in enumerate(toks) if FA_RE.search(w)), None)   # آیکن‌های لاتین/نمادی حذف شوند
-    name = " ".join(toks[i:]) if i is not None else " ".join(toks)
+    m = re.search(rf"(?<![A-Za-z0-9_]){re.escape(slug)}(?![A-Za-z0-9_])", t, re.IGNORECASE)
+    return (t[:m.start()], t[m.end():]) if m else None
+
+
+def parse_numbers(rest):
+    """«<قیمت> ▲|▼ <تغییر> <ساعت>» -> (قیمت، تغییر با علامت، ساعت) یا None"""
     tm = TIME_RE.search(rest)
     clock = tm.group() if tm else None
     if tm:
         rest = rest[:tm.start()] + " " + rest[tm.end():]
     nums = SIGNED_NUM.findall(rest)
-    if not nums or not name:
+    if not nums or nums[0].startswith("-"):
         return None
     price = float(nums[0].replace(",", ""))
-    if price <= 0 or nums[0].startswith("-"):
+    if price <= 0:
         return None
     change = None
     if len(nums) > 1:
         change = float(nums[1].replace(",", ""))
         if "▼" in rest or nums[1].startswith("-"):
             change = -abs(change)
-        elif "▲" not in rest and change == 0:
-            change = 0
-        elif "▲" not in rest:
+        elif "▲" not in rest and change != 0:
             change = None          # عدد بدون جهت معلوم
-    fix = lambda v: None if v is None else (int(v) if float(v).is_integer() else v)
-    return name, fix(price), fix(change), clock
+    return _fix(price), _fix(change), clock
+
+
+def row_texts(a):
+    """متن‌های ممکن برای ردیفِ این لینک، به ترتیب اولویت.
+
+    قیمت و ساعت معمولاً بیرون از خود لینک و داخل همان ردیف (والد) هستند؛ پس از لینک
+    بالا می‌رویم تا وقتی که والد فقط یک لینک /rate/ داشته باشد. اگر ردیف‌ها wrapper نداشتند،
+    متن برادرهای بعد از لینک (تا لینک بعدی) خوانده می‌شود.
+    """
+    node = a
+    while node.parent is not None and node.parent.name not in ("body", "html", "[document]"):
+        slugs = {m.group(1) for x in node.parent.find_all("a", href=RATE_HREF)
+                 for m in [RATE_HREF.search(x["href"])]}
+        if len(slugs) > 1:
+            break
+        node = node.parent
+    yield cell_text(node)
+    parts = []
+    for sib in a.next_siblings:
+        if getattr(sib, "find_all", None) and (sib.name == "a" and RATE_HREF.search(sib.get("href", ""))
+                                               or sib.find("a", href=RATE_HREF)):
+            break
+        parts.append(sib.get_text(" ") if hasattr(sib, "get_text") else str(sib))
+    yield cell_text(a) + " " + re.sub(r"\s+", " ", " ".join(parts))
+
+
+def parse_row(a, slug):
+    """-> (نام، قیمت، تغییر، ساعت) یا None"""
+    head = split_at_code(cell_text(a), slug)
+    if head is None:                  # مثلاً نوار بالای صفحه که کد ندارد؛ ردیف جدول همان نرخ را دارد
+        return None
+    toks = head[0].split()
+    i = next((k for k, w in enumerate(toks) if FA_RE.search(w)), None)   # آیکن‌های لاتین/نمادی حذف شوند
+    name = " ".join(toks[i:]) if i is not None else ""
+    if not name:
+        return None
+    for text in row_texts(a):
+        parts = split_at_code(text, slug)
+        got = parse_numbers(parts[1]) if parts else None
+        if got:
+            return (name, *got)
+    return None
 
 
 def collect_rows(html):
-    """-> {slug: (نام، قیمت، تغییر، ساعت)}؛ اگر یک slug چند بار آمده باشد، ردیفِ دارای ساعت ترجیح دارد."""
+    """-> ({slug: (نام، قیمت، تغییر، ساعت)}، زمان سایت)؛ اگر یک slug چند بار آمده، ردیفِ دارای ساعت ترجیح دارد."""
     soup = BeautifulSoup(html, "lxml")
+    links = soup.find_all("a", href=RATE_HREF)
     rows = {}
-    for a in soup.find_all("a", href=re.compile(r"/rate/[^/?#]+")):
-        slug = re.search(r"/rate/([^/?#]+)", a["href"]).group(1).lower()
+    for a in links:
+        slug = RATE_HREF.search(a["href"]).group(1).lower()
         try:
-            parsed = parse_row_text(cell_text(a), slug)
+            parsed = parse_row(a, slug)
         except Exception as e:
             print(f"  ! ردیف {slug} خوانده نشد: {e}", file=sys.stderr)
             continue
         if parsed and (slug not in rows or (rows[slug][3] is None and parsed[3])):
             rows[slug] = parsed
+    if not rows:   # برای عیب‌یابی از روی لاگ workflow
+        sample = cell_text(links[0].parent)[:120] if links else ""
+        print(f"  ! تشخیص: {len(html)} بایت HTML، {len(links)} لینک /rate/؛ نمونه‌ی ردیف: «{sample}»",
+              file=sys.stderr)
     m = re.search(r"آخرین\s*داده\s*دریافت.شده\s*([\d\-/: ]{10,25})", ascii_digits(soup.get_text(" ")))
     return rows, (m.group(1).strip() if m else None)
 
