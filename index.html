@@ -47,30 +47,43 @@ function chg(signedV, absV) {
   return `<span class="${cls}">${arrow}${num(Math.abs(signedV))}٪</span>`;
 }
 const COLS = {
-  currency: [["نام", i => `${esc(i.name)}<span class="sym">${esc(i.symbol)}</span>${i.quantity > 1 ? ` <span class="mut">(×${num(i.quantity)})</span>` : ""}`],
+  currency: [["نام", i => `${esc(i.name)}<span class="sym" title="${esc(i.tag)}">${esc(i.tag)}</span>${i.quantity > 1 ? ` <span class="mut">(×${num(i.quantity)})</span>` : ""}`],
              ["خرید", i => num(i.buy)], ["فروش", i => num(i.sell)], ["میانگین", i => num(i.average)], ["یک دلار چند؟", i => num(i.per_usd)]],
-  gold:     [["نام", i => esc(i.name)],
+  gold:     [["نام", i => `${esc(i.name)}<span class="sym" title="${esc(i.tag)}">${esc(i.tag)}</span>`],
              ["قیمت", i => num(i.price) + (i.unit === "usd" ? " $" : " تومان")],
              ["تغییر", i => chg(i.change_percent, i.change_percent_abs)],
              ["قیمت واقعی", i => num(i.real_price)], ["حباب", i => i.bubble_percent == null ? "—" : num(i.bubble_percent) + "٪"]],
-  crypto:   [["نام", i => `${esc(i.name)}<span class="sym">${esc(i.symbol)}</span>`],
+  crypto:   [["نام", i => `${esc(i.name)}<span class="sym" title="${esc(i.tag)}">${esc(i.tag)}</span>`],
              ["قیمت (تومان)", i => num(i.price_toman)], ["تغییر", i => chg(i.change_percent_toman, i.change_percent_toman_abs)],
              ["قیمت (دلار)", i => num(i.price_usd) + " $"], ["تغییر", i => chg(i.change_percent_usd, i.change_percent_usd_abs)]],
 };
-let data, cur;
+let data, cur, tabs = [];
+
+// فایل هر منبع data/<id>.json است؛ با افزودن منبع جدید، id آن را اینجا هم اضافه کن
+const SOURCE_IDS = ["alanchand"];
+
+async function loadSource(id) {
+  const r = await fetch(`data/${id}.json?t=${Date.now()}`);
+  if (!r.ok) throw new Error(id);
+  return r.json();
+}
 
 async function init() {
-  try {
-    const r = await fetch("data/prices.json?t=" + Date.now());
-    if (!r.ok) throw 0;
-    data = await r.json();
-  } catch (e) { $("upd").textContent = "داده‌ای پیدا نشد. اول workflow را یک بار اجرا کن."; return; }
-  $("upd").textContent = "آخرین به‌روزرسانی: " + new Date(data.updated_at_utc).toLocaleString("fa-IR") + " — منبع: الان چند";
-  const keys = Object.keys(data.categories);
-  $("tabs").innerHTML = keys.map(k => `<button class="tab" data-k="${esc(k)}" aria-pressed="false">${esc(data.categories[k].title)}</button>`).join("");
+  const res = await Promise.allSettled(SOURCE_IDS.map(loadSource));
+  data = res.filter(r => r.status === "fulfilled").map(r => r.value);
+  if (!data.length) { $("upd").textContent = "داده‌ای پیدا نشد. اول workflow را یک بار اجرا کن."; return; }
+  const latest = Math.max(...data.map(d => Date.parse(d.updated_at_utc)));
+  const failedIds = SOURCE_IDS.filter((_, i) => res[i].status === "rejected");
+  $("upd").textContent = "آخرین به‌روزرسانی: " + new Date(latest).toLocaleString("fa-IR")
+    + (failedIds.length ? " — بارگذاری نشد: " + failedIds.join("، ") : "");
+  tabs = [];
+  for (const d of data)
+    for (const [cat, c] of Object.entries(d.categories))
+      tabs.push({key: d.source.id + "/" + cat, label: `${d.source.name} — ${c.title}`, cat, c});
+  $("tabs").innerHTML = tabs.map(t => `<button class="tab" data-k="${esc(t.key)}" aria-pressed="false">${esc(t.label)}</button>`).join("");
   $("tabs").onclick = e => { const b = e.target.closest(".tab"); if (b) select(b.dataset.k); };
   $("q").oninput = draw;
-  select(keys[0]);
+  select(tabs[0].key);
 }
 function select(k) {
   cur = k;
@@ -78,11 +91,11 @@ function select(k) {
   draw();
 }
 function draw() {
-  const c = data.categories[cur], cols = COLS[cur] || [];
+  const t = tabs.find(x => x.key === cur), c = t.c, cols = COLS[t.cat] || [];
   const q = $("q").value.trim().toLowerCase();
   $("warn").textContent = c.stale ? "⚠ این دسته در آخرین اجرا به‌روز نشد؛ داده‌ی قدیمی نمایش داده می‌شود." : "";
   $("head").innerHTML = "<tr>" + cols.map(([h]) => `<th>${h}</th>`).join("") + "</tr>";
-  const items = c.items.filter(i => !q || [i.name, i.name_en, i.symbol].some(v => v && String(v).toLowerCase().includes(q)));
+  const items = c.items.filter(i => !q || [i.name, i.name_en, i.symbol, i.tag].some(v => v && String(v).toLowerCase().includes(q)));
   $("rows").innerHTML = items.map(i => "<tr>" + cols.map(([, f], n) => `<td class="${n ? "n" : ""}">${f(i)}</td>`).join("") + "</tr>").join("")
     || `<tr><td colspan="${cols.length}" class="mut">موردی پیدا نشد</td></tr>`;
 }
