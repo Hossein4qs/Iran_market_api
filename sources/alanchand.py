@@ -20,6 +20,12 @@ MIN_ITEMS = {"currency": 10, "gold": 4, "crypto": 10}
 
 
 # ---------- پارسرهای هر دسته (هر کدام یک <tr> می‌گیرند؛ ردیف نامربوط -> None) ----------
+def per_unit(v, qty):
+    """قیمت یک واحد؛ عدد صحیح اگر ممکن باشد."""
+    v = v / qty
+    return int(v) if float(v).is_integer() else round(v, 6)
+
+
 def parse_currency_row(row, cells):
     if len(cells) < 3:
         return None
@@ -34,10 +40,11 @@ def parse_currency_row(row, cells):
         print(f"  ! ارز ناشناخته (نماد حدسی): {name}", file=sys.stderr)
         symbol, qty = norm(name), 1
     per_usd = to_number(cell_text(cells[3])) if len(cells) > 3 else None
-    avg = (buy + sell) / 2
-    return {"symbol": symbol, "name": name, "quantity": qty,
+    # قیمت همه‌ی ارزها برای «یک واحد» است؛ «صد ین» و مشابه‌اش بر ۱۰۰ تقسیم می‌شود
+    buy, sell = per_unit(buy, qty), per_unit(sell, qty)
+    return {"symbol": symbol, "name": name, "quantity": 1,
             "buy": buy, "sell": sell,
-            "average": int(avg) if float(avg).is_integer() else avg,
+            "price": per_unit((buy + sell) / 2, 1),     # price = میانگین خرید و فروش
             "per_usd": per_usd}
 
 
@@ -94,6 +101,7 @@ def parse_crypto_row(row, cells):
     d_t, d_u = direction(cells[1], toman_txt, pct_toman), direction(cells[2], usd_txt, pct_usd)
     return {"symbol": symbol, "name": " ".join(fa) or None, "name_en": " ".join(en) or None,
             # قیمت تومانی ۰ یعنی بازار داخلی آن را پوشش نمی‌دهد
+            "price": p_toman or None,        # قیمت اصلی = تومان؛ قیمت دلاری جدا در price_usd
             "price_toman": p_toman or None,
             "change_percent_toman": signed(pct_toman, d_t), "change_percent_toman_abs": pct_toman,
             "price_usd": p_usd,

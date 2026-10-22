@@ -50,11 +50,15 @@ def scrape_source(session, src):
     """-> (دیکشنری فایل منبع، تعداد دسته‌های ناموفق)"""
     prev_cats = load_previous(src.ID)
     categories, failed = {}, 0
+    pages = {}          # چند دسته می‌توانند یک URL مشترک داشته باشند؛ هر URL یک بار دریافت می‌شود
     for category, (title, path) in src.PAGES.items():
         url = src.BASE + path
-        print(f"→ [{src.ID}] {url}", file=sys.stderr)
+        fetched = url not in pages
         try:
-            html = fetch(session, url)
+            if fetched:
+                print(f"→ [{src.ID}] {url}", file=sys.stderr)
+                pages[url] = fetch(session, url)
+            html = pages[url]
             items, site_updated = src.parse_page(category, html)
             min_items = src.MIN_ITEMS.get(category, 1)
             if len(items) < min_items:
@@ -72,7 +76,8 @@ def scrape_source(session, src):
             failed += 1
             old = prev_cats.get(category, {"title": title, "items": []})
             categories[category] = {**old, "stale": True, "error": str(e)[:300]}
-        time.sleep(1.5)
+        if fetched:
+            time.sleep(1.5)
     return categories, failed
 
 

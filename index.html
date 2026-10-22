@@ -48,19 +48,22 @@ function chg(signedV, absV) {
 }
 const COLS = {
   currency: [["نام", i => `${esc(i.name)}<span class="sym" title="${esc(i.tag)}">${esc(i.tag)}</span>${i.quantity > 1 ? ` <span class="mut">(×${num(i.quantity)})</span>` : ""}`],
-             ["خرید", i => num(i.buy)], ["فروش", i => num(i.sell)], ["میانگین", i => num(i.average)], ["یک دلار چند؟", i => num(i.per_usd)]],
+             ["قیمت", i => num(i.price)], ["خرید", i => num(i.buy)], ["فروش", i => num(i.sell)],
+             ["تغییر", i => chg(i.change_percent, null)], ["یک دلار چند؟", i => num(i.per_usd)]],
   gold:     [["نام", i => `${esc(i.name)}<span class="sym" title="${esc(i.tag)}">${esc(i.tag)}</span>`],
              ["قیمت", i => num(i.price) + (i.unit === "usd" ? " $" : " تومان")],
              ["تغییر", i => chg(i.change_percent, i.change_percent_abs)],
-             ["قیمت واقعی", i => num(i.real_price)], ["حباب", i => i.bubble_percent == null ? "—" : num(i.bubble_percent) + "٪"]],
+             ["قیمت واقعی", i => num(i.real_price)], ["حباب", i => i.bubble_percent != null ? num(i.bubble_percent) + "٪" : num(i.bubble)]],
+  official: [["نام", i => `${esc(i.name)}<span class="sym" title="${esc(i.tag)}">${esc(i.tag)}</span>`],
+             ["قیمت", i => num(i.price)], ["ساعت", i => esc(i.time || "—")]],
   crypto:   [["نام", i => `${esc(i.name)}<span class="sym" title="${esc(i.tag)}">${esc(i.tag)}</span>`],
-             ["قیمت (تومان)", i => num(i.price_toman)], ["تغییر", i => chg(i.change_percent_toman, i.change_percent_toman_abs)],
+             ["قیمت (تومان)", i => num(i.price_toman ?? i.price)], ["تغییر", i => chg(i.change_percent_toman, i.change_percent_toman_abs)],
              ["قیمت (دلار)", i => num(i.price_usd) + " $"], ["تغییر", i => chg(i.change_percent_usd, i.change_percent_usd_abs)]],
 };
 let data, cur, tabs = [];
 
 // فایل هر منبع data/<id>.json است؛ با افزودن منبع جدید، id آن را اینجا هم اضافه کن
-const SOURCE_IDS = ["alanchand"];
+const SOURCE_IDS = ["alanchand", "rialnerkh"];
 
 async function loadSource(id) {
   const r = await fetch(`data/${id}.json?t=${Date.now()}`);
