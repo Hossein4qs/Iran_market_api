@@ -15,7 +15,7 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
 
@@ -25,12 +25,19 @@ jobs:
           cache: pip
 
       - name: Install deps
-        run: |
-          pip install -r requirements.txt
-          playwright install --with-deps chromium
+        run: pip install -r requirements.txt
 
       - name: Scrape
         run: python scraper.py
+
+      # اگر ساختار سایت عوض شود، HTML خام صفحه‌ی خراب اینجا ذخیره می‌شود
+      - name: Upload debug HTML on failure
+        if: failure() || hashFiles('debug/*') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-html
+          path: debug/
+          if-no-files-found: ignore
 
       - name: Commit changes
         run: |
