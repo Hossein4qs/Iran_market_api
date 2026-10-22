@@ -11,7 +11,9 @@
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.7 Vazirmatn,Tahoma,sans-serif}
 main{max-width:860px;margin:0 auto;padding:20px 16px}
 h1{font-size:20px;margin:0 0 4px}.sub{color:var(--mut);font-size:13px;margin-bottom:16px}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.step{margin-bottom:12px}.lbl{color:var(--mut);font-size:12px;margin-bottom:4px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+#cats .tab{padding:5px 12px;font-size:14px}
 .tab{border:1px solid var(--line);background:var(--card);color:var(--fg);padding:8px 14px;border-radius:8px;cursor:pointer;font:inherit}
 .tab[aria-pressed=true]{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
 .tab:focus-visible,input:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
@@ -27,7 +29,8 @@ td.n{font-variant-numeric:tabular-nums}.sym{color:var(--mut);font-size:12px;marg
 <body><main>
 <h1>قیمت‌ها</h1>
 <div class="sub" id="upd">در حال بارگذاری…</div>
-<div class="tabs" id="tabs"></div>
+<div class="step"><div class="lbl">منبع</div><div class="tabs" id="sources"></div></div>
+<div class="step"><div class="lbl">دسته‌بندی</div><div class="tabs" id="cats"></div></div>
 <div class="panel">
   <input id="q" type="search" placeholder="جستجو…" aria-label="جستجو">
   <div class="warn" id="warn"></div>
@@ -39,6 +42,8 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const num = n => n == null ? "—" : n.toLocaleString("fa-IR", {maximumFractionDigits: Math.abs(n) < 1 ? 8 : (Math.abs(n) < 1000 ? 2 : 0)});
 // درصد تغییر: علامت‌دار اگر جهت معلوم باشد، وگرنه مقدار خام بدون رنگ
+const CALC = ' <span class="mut" title="محاسبه‌شده نسبت به آخرین قیمت ثبت‌شده‌ی روز قبل (منبع درصد تغییر نمی‌دهد)">*</span>';
+const chgi = (i, s, a) => chg(s, a) + (i.change_source === "computed" && s != null ? CALC : "");
 function chg(signedV, absV) {
   if (signedV == null && absV == null) return "";
   if (signedV == null) return `<span class="mut">${num(absV)}٪</span>`;
@@ -49,18 +54,18 @@ function chg(signedV, absV) {
 const COLS = {
   currency: [["نام", i => `${esc(i.name)}<span class="sym" title="${esc(i.tag)}">${esc(i.tag)}</span>${i.quantity > 1 ? ` <span class="mut">(×${num(i.quantity)})</span>` : ""}`],
              ["قیمت", i => num(i.price)], ["خرید", i => num(i.buy)], ["فروش", i => num(i.sell)],
-             ["تغییر", i => chg(i.change_percent, null)], ["یک دلار چند؟", i => num(i.per_usd)]],
+             ["تغییر", i => chgi(i, i.change_percent, null)], ["یک دلار چند؟", i => num(i.per_usd)]],
   gold:     [["نام", i => `${esc(i.name)}<span class="sym" title="${esc(i.tag)}">${esc(i.tag)}</span>`],
              ["قیمت", i => num(i.price) + (i.unit === "usd" ? " $" : " تومان")],
-             ["تغییر", i => chg(i.change_percent, i.change_percent_abs)],
+             ["تغییر", i => chgi(i, i.change_percent, i.change_percent_abs)],
              ["قیمت واقعی", i => num(i.real_price)], ["حباب", i => i.bubble_percent != null ? num(i.bubble_percent) + "٪" : num(i.bubble)]],
   official: [["نام", i => `${esc(i.name)}<span class="sym" title="${esc(i.tag)}">${esc(i.tag)}</span>`],
              ["قیمت", i => num(i.price)], ["ساعت", i => esc(i.time || "—")]],
   crypto:   [["نام", i => `${esc(i.name)}<span class="sym" title="${esc(i.tag)}">${esc(i.tag)}</span>`],
-             ["قیمت (تومان)", i => num(i.price_toman ?? i.price)], ["تغییر", i => chg(i.change_percent_toman, i.change_percent_toman_abs)],
+             ["قیمت (تومان)", i => num(i.price_toman ?? i.price)], ["تغییر", i => chgi(i, i.change_percent_toman ?? i.change_percent, i.change_percent_toman_abs)],
              ["قیمت (دلار)", i => num(i.price_usd) + " $"], ["تغییر", i => chg(i.change_percent_usd, i.change_percent_usd_abs)]],
 };
-let data, cur, tabs = [];
+let data = [], curSrc, curCat;
 
 // فایل هر منبع data/<id>.json است؛ با افزودن منبع جدید، id آن را اینجا هم اضافه کن
 const SOURCE_IDS = ["alanchand", "rialnerkh"];
@@ -71,30 +76,51 @@ async function loadSource(id) {
   return r.json();
 }
 
+const btn = (k, label, pressed) => `<button class="tab" data-k="${esc(k)}" aria-pressed="${pressed}">${esc(label)}</button>`;
+const srcData = id => data.find(d => d.source.id === id);
+
 async function init() {
   const res = await Promise.allSettled(SOURCE_IDS.map(loadSource));
   data = res.filter(r => r.status === "fulfilled").map(r => r.value);
   if (!data.length) { $("upd").textContent = "داده‌ای پیدا نشد. اول workflow را یک بار اجرا کن."; return; }
-  const latest = Math.max(...data.map(d => Date.parse(d.updated_at_utc)));
   const failedIds = SOURCE_IDS.filter((_, i) => res[i].status === "rejected");
-  $("upd").textContent = "آخرین به‌روزرسانی: " + new Date(latest).toLocaleString("fa-IR")
-    + (failedIds.length ? " — بارگذاری نشد: " + failedIds.join("، ") : "");
-  tabs = [];
-  for (const d of data)
-    for (const [cat, c] of Object.entries(d.categories))
-      tabs.push({key: d.source.id + "/" + cat, label: `${d.source.name} — ${c.title}`, cat, c});
-  $("tabs").innerHTML = tabs.map(t => `<button class="tab" data-k="${esc(t.key)}" aria-pressed="false">${esc(t.label)}</button>`).join("");
-  $("tabs").onclick = e => { const b = e.target.closest(".tab"); if (b) select(b.dataset.k); };
+  $("sources").innerHTML = data.map(d => btn(d.source.id, d.source.name, false)).join("");
+  $("sources").onclick = e => { const b = e.target.closest(".tab"); if (b) pickSource(b.dataset.k); };
+  $("cats").onclick = e => { const b = e.target.closest(".tab"); if (b) pickCat(b.dataset.k); };
   $("q").oninput = draw;
-  select(tabs[0].key);
+  window.onhashchange = fromHash;
+  window.failedIds = failedIds;
+  fromHash();
 }
-function select(k) {
-  cur = k;
-  [...$("tabs").children].forEach(b => b.setAttribute("aria-pressed", b.dataset.k === k));
+
+// #<منبع>/<دسته> قابل‌اشتراک است؛ بدون هش، اولین منبع و اولین دسته
+function fromHash() {
+  const [s, c] = decodeURIComponent(location.hash.slice(1)).split("/");
+  pickSource(srcData(s) ? s : data[0].source.id, c, false);
+}
+
+function pickSource(id, wantCat, writeHash = true) {
+  curSrc = id;
+  const d = srcData(id), cats = Object.keys(d.categories);
+  // دسته‌ی انتخاب‌شده تا حد امکان حفظ شود (مثلاً «طلا» هنگام رفتن به منبع دیگر)
+  curCat = cats.includes(wantCat) ? wantCat : cats.includes(curCat) ? curCat : cats[0];
+  [...$("sources").children].forEach(b => b.setAttribute("aria-pressed", b.dataset.k === id));
+  $("cats").innerHTML = cats.map(k => btn(k, d.categories[k].title, k === curCat)).join("");
+  $("upd").textContent = "آخرین به‌روزرسانی " + d.source.name + ": " + new Date(d.updated_at_utc).toLocaleString("fa-IR")
+    + (window.failedIds.length ? " — بارگذاری نشد: " + window.failedIds.join("، ") : "");
+  if (writeHash) history.replaceState(null, "", "#" + id + "/" + curCat);
   draw();
 }
+
+function pickCat(cat) {
+  curCat = cat;
+  [...$("cats").children].forEach(b => b.setAttribute("aria-pressed", b.dataset.k === cat));
+  history.replaceState(null, "", "#" + curSrc + "/" + cat);
+  draw();
+}
+
 function draw() {
-  const t = tabs.find(x => x.key === cur), c = t.c, cols = COLS[t.cat] || [];
+  const c = srcData(curSrc).categories[curCat], cols = COLS[curCat] || [];
   const q = $("q").value.trim().toLowerCase();
   $("warn").textContent = c.stale ? "⚠ این دسته در آخرین اجرا به‌روز نشد؛ داده‌ی قدیمی نمایش داده می‌شود." : "";
   $("head").innerHTML = "<tr>" + cols.map(([h]) => `<th>${h}</th>`).join("") + "</tr>";
