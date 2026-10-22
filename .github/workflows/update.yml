@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
@@ -39,7 +39,9 @@ jobs:
           path: debug/
           if-no-files-found: ignore
 
+      # حتی اگر یک منبع خراب شد، فایل منابع سالم commit می‌شود (job قرمز می‌ماند)
       - name: Commit changes
+        if: ${{ !cancelled() }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
