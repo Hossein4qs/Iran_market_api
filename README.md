@@ -1,3 +1,5 @@
+![last update](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FHossein4qs%2FIran_market_api%2Fmain%2Fdata%2Falanchand.json&query=%24.updated_at_tehran&label=last%20update&color=blue)
+
 <div dir="rtl">
 
 # Iran Market API
