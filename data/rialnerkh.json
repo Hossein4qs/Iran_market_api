@@ -5,13 +5,13 @@
     "url": "https://www.rialnerkh.com"
   },
   "unit": "تومان (مگر آنکه در آیتم unit=usd باشد)",
-  "updated_at_utc": "2026-10-28T18:58:52+00:00",
-  "updated_at_tehran": "2026-10-28T22:28:52+03:30",
+  "updated_at_utc": "2026-10-28T23:00:30+00:00",
+  "updated_at_tehran": "2026-10-29T02:30:30+03:30",
   "categories": {
     "currency": {
       "title": "ارز و حواله",
       "url": "https://www.rialnerkh.com/?lang=fa",
-      "site_updated": "2026-10-28 18:58:44",
+      "site_updated": "2026-10-28 22:57:35",
       "items": [
         {
           "tag": "currency:usd",
@@ -19,8 +19,8 @@
           "name": "دلار آمریکا",
           "price": 269500,
           "unit": "toman",
-          "change": -300,
-          "change_percent": -0.11,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -30,8 +30,8 @@
           "name": "یورو",
           "price": 300380,
           "unit": "toman",
-          "change": -210,
-          "change_percent": -0.07,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -41,8 +41,8 @@
           "name": "پوند انگلیس",
           "price": 358780,
           "unit": "toman",
-          "change": -390,
-          "change_percent": -0.11,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -52,9 +52,9 @@
           "name": "درهم امارات",
           "price": 74090,
           "unit": "toman",
-          "change": -80,
-          "change_percent": -0.11,
-          "time": "22:10",
+          "change": 0,
+          "change_percent": 0.0,
+          "time": "02:20",
           "quantity": 1
         },
         {
@@ -63,8 +63,8 @@
           "name": "لیر ترکیه",
           "price": 5410,
           "unit": "toman",
-          "change": -10,
-          "change_percent": -0.18,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -74,8 +74,8 @@
           "name": "ین ژاپن",
           "price": 1705,
           "unit": "toman",
-          "change": -5,
-          "change_percent": -0.29,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -85,8 +85,8 @@
           "name": "دلار استرالیا",
           "price": 189730,
           "unit": "toman",
-          "change": 60,
-          "change_percent": 0.03,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -96,8 +96,8 @@
           "name": "دلار نیوزلند",
           "price": 151530,
           "unit": "toman",
-          "change": -1910,
-          "change_percent": -1.24,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -107,8 +107,8 @@
           "name": "دلار کانادا",
           "price": 191980,
           "unit": "toman",
-          "change": -100,
-          "change_percent": -0.05,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -118,8 +118,8 @@
           "name": "دلار سنگاپور",
           "price": 210100,
           "unit": "toman",
-          "change": -530,
-          "change_percent": -0.25,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -129,8 +129,8 @@
           "name": "فرانک سویس",
           "price": 324950,
           "unit": "toman",
-          "change": -670,
-          "change_percent": -0.21,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -151,8 +151,8 @@
           "name": "منات آذربایجان",
           "price": 158950,
           "unit": "toman",
-          "change": -370,
-          "change_percent": -0.23,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -162,8 +162,8 @@
           "name": "کرون نروژ",
           "price": 29080,
           "unit": "toman",
-          "change": 160,
-          "change_percent": 0.55,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -173,8 +173,8 @@
           "name": "کرون سوئد",
           "price": 27160,
           "unit": "toman",
-          "change": 10,
-          "change_percent": 0.04,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -184,8 +184,8 @@
           "name": "کرون دانمارک",
           "price": 40190,
           "unit": "toman",
-          "change": -30,
-          "change_percent": -0.07,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -195,8 +195,8 @@
           "name": "دینار کویت",
           "price": 866510,
           "unit": "toman",
-          "change": -510,
-          "change_percent": -0.06,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -206,8 +206,8 @@
           "name": "ریال عمان",
           "price": 700930,
           "unit": "toman",
-          "change": -760,
-          "change_percent": -0.11,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -217,8 +217,8 @@
           "name": "روبل روسیه",
           "price": 3345,
           "unit": "toman",
-          "change": -5,
-          "change_percent": -0.15,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -228,8 +228,8 @@
           "name": "رئال برزیل",
           "price": 50070,
           "unit": "toman",
-          "change": -380,
-          "change_percent": -0.75,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -239,8 +239,8 @@
           "name": "بات تایلند",
           "price": 7980,
           "unit": "toman",
-          "change": -10,
-          "change_percent": -0.13,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -250,8 +250,8 @@
           "name": "افغانی",
           "price": 4145,
           "unit": "toman",
-          "change": -5,
-          "change_percent": -0.12,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -261,8 +261,8 @@
           "name": "روپیه هند",
           "price": 2830,
           "unit": "toman",
-          "change": -10,
-          "change_percent": -0.35,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -272,8 +272,8 @@
           "name": "یوان چین",
           "price": 40430,
           "unit": "toman",
-          "change": -30,
-          "change_percent": -0.07,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -283,8 +283,8 @@
           "name": "رینگیت مالزی",
           "price": 66110,
           "unit": "toman",
-          "change": 110,
-          "change_percent": 0.17,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -294,8 +294,8 @@
           "name": "لاری گرجستان",
           "price": 104840,
           "unit": "toman",
-          "change": 790,
-          "change_percent": 0.76,
+          "change": 0,
+          "change_percent": 0.0,
           "time": "20:52",
           "quantity": 1
         },
@@ -305,9 +305,9 @@
           "name": "دلار آمریکا شرکت",
           "price": 273560,
           "unit": "toman",
-          "change": -290,
-          "change_percent": -0.11,
-          "time": "22:10",
+          "change": 0,
+          "change_percent": 0.0,
+          "time": "02:20",
           "quantity": 1
         },
         {
@@ -316,9 +316,9 @@
           "name": "دلار آمریکا شخص",
           "price": 276140,
           "unit": "toman",
-          "change": -300,
-          "change_percent": -0.11,
-          "time": "22:10",
+          "change": 0,
+          "change_percent": 0.0,
+          "time": "02:20",
           "quantity": 1
         },
         {
@@ -327,31 +327,31 @@
           "name": "درهم امارات",
           "price": 74080,
           "unit": "toman",
-          "change": -80,
-          "change_percent": -0.11,
-          "time": "22:10",
+          "change": 0,
+          "change_percent": 0.0,
+          "time": "02:20",
           "quantity": 1
         },
         {
           "tag": "currency:eur_hawala",
           "symbol": "eur_hawala",
           "name": "حواله یورو",
-          "price": 306680,
+          "price": 306750,
           "unit": "toman",
-          "change": 180,
-          "change_percent": 0.06,
-          "time": "22:10",
+          "change": -80,
+          "change_percent": -0.03,
+          "time": "02:20",
           "quantity": 1
         },
         {
           "tag": "currency:gbp_hawala",
           "symbol": "gbp_hawala",
           "name": "حواله پوند",
-          "price": 362300,
+          "price": 362450,
           "unit": "toman",
-          "change": -220,
-          "change_percent": -0.06,
-          "time": "22:10",
+          "change": -140,
+          "change_percent": -0.04,
+          "time": "02:20",
           "quantity": 1
         },
         {
@@ -362,29 +362,29 @@
           "unit": "toman",
           "change": 0,
           "change_percent": 0.0,
-          "time": "22:10",
+          "time": "02:20",
           "quantity": 1
         },
         {
           "tag": "currency:aud_hawala",
           "symbol": "aud_hawala",
           "name": "حواله دلار استرالیا",
-          "price": 191750,
+          "price": 191840,
           "unit": "toman",
-          "change": 400,
-          "change_percent": 0.21,
-          "time": "22:10",
+          "change": -110,
+          "change_percent": -0.06,
+          "time": "02:20",
           "quantity": 1
         },
         {
           "tag": "currency:myr_hawala",
           "symbol": "myr_hawala",
           "name": "حواله رینگیت",
-          "price": 66750,
+          "price": 66740,
           "unit": "toman",
-          "change": 120,
-          "change_percent": 0.18,
-          "time": "22:10",
+          "change": 10,
+          "change_percent": 0.01,
+          "time": "02:20",
           "quantity": 1
         },
         {
@@ -393,9 +393,9 @@
           "name": "حواله یوان",
           "price": 41630,
           "unit": "toman",
-          "change": -30,
-          "change_percent": -0.07,
-          "time": "22:10",
+          "change": 10,
+          "change_percent": 0.02,
+          "time": "02:20",
           "quantity": 1
         },
         {
@@ -404,9 +404,9 @@
           "name": "حواله لیر",
           "price": 5570,
           "unit": "toman",
-          "change": -10,
-          "change_percent": -0.18,
-          "time": "22:10",
+          "change": 0,
+          "change_percent": 0.0,
+          "time": "02:20",
           "quantity": 1
         },
         {
@@ -417,7 +417,7 @@
           "unit": "toman",
           "change": 0,
           "change_percent": 0.0,
-          "time": "22:10",
+          "time": "02:20",
           "quantity": 1
         }
       ]
@@ -425,7 +425,7 @@
     "gold": {
       "title": "طلا و سکه",
       "url": "https://www.rialnerkh.com/?lang=fa",
-      "site_updated": "2026-10-28 18:58:44",
+      "site_updated": "2026-10-28 22:57:35",
       "items": [
         {
           "tag": "gold:xau_toman",
@@ -433,8 +433,8 @@
           "name": "اونس طلا",
           "price": 1089002340,
           "unit": "toman",
-          "change": -6550240,
-          "change_percent": -0.6,
+          "change": -7175440,
+          "change_percent": -0.65,
           "time": "20:52",
           "bubble": null
         },
@@ -442,11 +442,11 @@
           "tag": "gold:usd_xau",
           "symbol": "usd_xau",
           "name": "اونس طلا به دلار",
-          "price": 4053,
+          "price": 4052,
           "unit": "usd",
-          "change": -7,
-          "change_percent": -0.17,
-          "time": "22:10",
+          "change": -15,
+          "change_percent": -0.37,
+          "time": "02:20",
           "bubble": null
         },
         {
@@ -455,10 +455,10 @@
           "name": "یک گرم طلا 18 عیار",
           "price": 26432430,
           "unit": "toman",
-          "change": 272400,
-          "change_percent": 1.04,
-          "time": "02:03",
-          "bubble": 91210
+          "change": 0,
+          "change_percent": 0.0,
+          "time": "16:26",
+          "bubble": 97450
         },
         {
           "tag": "gold:sekkeh",
@@ -466,10 +466,10 @@
           "name": "سکه طرح امامی",
           "price": 268000000,
           "unit": "toman",
-          "change": 1500,
+          "change": 0,
           "change_percent": 0.0,
-          "time": "02:03",
-          "bubble": 10890210
+          "time": "16:26",
+          "bubble": 10951100
         },
         {
           "tag": "gold:sekkeh_bahar",
@@ -477,10 +477,10 @@
           "name": "سکه بهار آزادی",
           "price": 258000000,
           "unit": "toman",
-          "change": 2000,
+          "change": 0,
           "change_percent": 0.0,
-          "time": "02:03",
-          "bubble": 920210
+          "time": "16:26",
+          "bubble": 981100
         },
         {
           "tag": "gold:nim",
@@ -488,10 +488,10 @@
           "name": "سکه نیم",
           "price": 141000000,
           "unit": "toman",
-          "change": 500,
+          "change": 0,
           "change_percent": 0.0,
-          "time": "02:03",
-          "bubble": 12445910
+          "time": "16:26",
+          "bubble": 12476350
         },
         {
           "tag": "gold:rob",
@@ -501,8 +501,8 @@
           "unit": "toman",
           "change": 0,
           "change_percent": 0.0,
-          "time": "02:03",
-          "bubble": 11707950
+          "time": "16:26",
+          "bubble": 11723170
         },
         {
           "tag": "gold:abshodeh",
@@ -510,9 +510,9 @@
           "name": "مثقال طلای آبشده",
           "price": 114500000,
           "unit": "toman",
-          "change": 1180,
+          "change": 0,
           "change_percent": 0.0,
-          "time": "02:03",
+          "time": "16:26",
           "bubble": null
         },
         {
@@ -523,92 +523,92 @@
           "unit": "toman",
           "change": 0,
           "change_percent": 0.0,
-          "time": "02:03",
-          "bubble": 6360530
+          "time": "16:26",
+          "bubble": 6368020
         }
       ]
     },
     "crypto": {
       "title": "ارز دیجیتال",
       "url": "https://www.rialnerkh.com/?lang=fa",
-      "site_updated": "2026-10-28 18:58:44",
+      "site_updated": "2026-10-28 22:57:35",
       "items": [
         {
           "tag": "crypto:btc",
           "symbol": "btc",
           "name": "بیت کوین",
-          "price": 21992798750,
+          "price": 21999462810,
           "unit": "toman",
-          "change": 244951560,
-          "change_percent": 1.13,
-          "time": "22:10"
+          "change": 18352730,
+          "change_percent": 0.08,
+          "time": "02:20"
         },
         {
           "tag": "crypto:eth",
           "symbol": "eth",
           "name": "اتریوم",
-          "price": 639710050,
+          "price": 638970380,
           "unit": "toman",
-          "change": 7676360,
-          "change_percent": 1.21,
-          "time": "22:10"
+          "change": -301460,
+          "change_percent": -0.05,
+          "time": "02:20"
         },
         {
           "tag": "crypto:xrp",
           "symbol": "xrp",
           "name": "ریپل",
-          "price": 360220,
+          "price": 358950,
           "unit": "toman",
-          "change": 3470,
-          "change_percent": 0.97,
-          "time": "22:10"
+          "change": -730,
+          "change_percent": -0.2,
+          "time": "02:20"
         },
         {
           "tag": "crypto:bch",
           "symbol": "bch",
           "name": "بیت کوین کش",
-          "price": 77312790,
+          "price": 78678650,
           "unit": "toman",
-          "change": -955620,
-          "change_percent": -1.22,
-          "time": "22:10"
+          "change": 703890,
+          "change_percent": 0.9,
+          "time": "02:20"
         },
         {
           "tag": "crypto:eos",
           "symbol": "eos",
           "name": "ای او اس",
-          "price": 24530,
+          "price": 24760,
           "unit": "toman",
-          "change": 120,
-          "change_percent": 0.49,
-          "time": "22:10"
+          "change": 150,
+          "change_percent": 0.61,
+          "time": "02:20"
         },
         {
           "tag": "crypto:bnb",
           "symbol": "bnb",
           "name": "بایننس",
-          "price": 203837120,
+          "price": 204809040,
           "unit": "toman",
-          "change": 2284810,
-          "change_percent": 1.13,
-          "time": "22:10"
+          "change": 664090,
+          "change_percent": 0.33,
+          "time": "02:20"
         },
         {
           "tag": "crypto:usdt",
           "symbol": "usdt",
           "name": "تتر",
-          "price": 270700,
+          "price": 270500,
           "unit": "toman",
-          "change": 1300,
-          "change_percent": 0.48,
-          "time": "11:10"
+          "change": 0,
+          "change_percent": 0.0,
+          "time": "14:13"
         }
       ]
     },
     "official": {
       "title": "نرخ‌های رسمی",
       "url": "https://www.rialnerkh.com/?lang=fa",
-      "site_updated": "2026-10-28 18:58:44",
+      "site_updated": "2026-10-28 22:57:35",
       "items": [
         {
           "tag": "official:usd_sell",
