@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>قیمت‌ها</title>
+<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
 :root{--bg:#f6f7f9;--card:#fff;--fg:#14181f;--mut:#6b7280;--line:#e3e6ea;--acc:#0b6e5c;--up:#0b6e5c;--down:#b42318}
 @media (prefers-color-scheme:dark){:root{--bg:#0f1318;--card:#171c23;--fg:#e8ebef;--mut:#8a93a0;--line:#262d37;--acc:#4cc2a8;--up:#4cc2a8;--down:#f08a80}}
@@ -18,12 +19,20 @@ h1{font-size:20px;margin:0 0 4px}.sub{color:var(--mut);font-size:13px;margin-bot
 .tab[aria-pressed=true]{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
 .tab:focus-visible,input:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto}
+.panel + .panel{margin-top:12px}
 input{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:8px;padding:8px 12px;font:inherit;margin-bottom:8px}
 .warn{color:var(--down);font-size:13px;margin-bottom:8px}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:start;white-space:nowrap}th{color:var(--mut);font-weight:400;font-size:13px}
 td.n{font-variant-numeric:tabular-nums}.sym{color:var(--mut);font-size:12px;margin-inline-start:6px;direction:ltr;display:inline-block}
 .up{color:var(--up)}.down{color:var(--down)}.mut{color:var(--mut)}
+/* نمودار */
+.chartbtn{padding:3px 10px;font-size:13px}
+.chhead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+#chRanges .tab{padding:4px 12px;font-size:13px}
+#chMsg{font-size:13px;margin:10px 0}
+.chwrap{position:relative;height:300px;margin-top:10px}
+.chstats{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--mut);margin-top:10px}
 </style>
 </head>
 <body><main>
@@ -35,6 +44,16 @@ td.n{font-variant-numeric:tabular-nums}.sym{color:var(--mut);font-size:12px;marg
   <input id="q" type="search" placeholder="جستجو…" aria-label="جستجو">
   <div class="warn" id="warn"></div>
   <table><thead id="head"></thead><tbody id="rows"></tbody></table>
+</div>
+<div class="panel" id="chartBox" hidden>
+  <div class="chhead">
+    <strong id="chTitle"></strong>
+    <button class="tab chartbtn" id="chClose">بستن</button>
+  </div>
+  <div class="tabs" id="chRanges"></div>
+  <div class="mut" id="chMsg"></div>
+  <div class="chwrap" id="chWrap" dir="ltr" hidden><canvas id="chCanvas"></canvas></div>
+  <div class="chstats" id="chStats"></div>
 </div>
 </main>
 <script>
@@ -88,6 +107,13 @@ async function init() {
   $("sources").onclick = e => { const b = e.target.closest(".tab"); if (b) pickSource(b.dataset.k); };
   $("cats").onclick = e => { const b = e.target.closest(".tab"); if (b) pickCat(b.dataset.k); };
   $("q").oninput = draw;
+  $("rows").onclick = e => { const b = e.target.closest(".chartbtn"); if (b) openChart(b.dataset.tag); };
+  $("chRanges").onclick = e => {
+    const b = e.target.closest(".tab");
+    if (b && chartState) { chartState.range = +b.dataset.k; renderChart(); }
+  };
+  $("chClose").onclick = closeChart;
+  window.matchMedia("(prefers-color-scheme:dark)").addEventListener("change", () => chartState && renderChart());
   window.onhashchange = fromHash;
   window.failedIds = failedIds;
   fromHash();
@@ -101,6 +127,7 @@ function fromHash() {
 
 function pickSource(id, wantCat, writeHash = true) {
   curSrc = id;
+  closeChart();
   const d = srcData(id), cats = Object.keys(d.categories);
   // دسته‌ی انتخاب‌شده تا حد امکان حفظ شود (مثلاً «طلا» هنگام رفتن به منبع دیگر)
   curCat = cats.includes(wantCat) ? wantCat : cats.includes(curCat) ? curCat : cats[0];
@@ -114,6 +141,7 @@ function pickSource(id, wantCat, writeHash = true) {
 
 function pickCat(cat) {
   curCat = cat;
+  closeChart();
   [...$("cats").children].forEach(b => b.setAttribute("aria-pressed", b.dataset.k === cat));
   history.replaceState(null, "", "#" + curSrc + "/" + cat);
   draw();
@@ -123,10 +151,105 @@ function draw() {
   const c = srcData(curSrc).categories[curCat], cols = COLS[curCat] || [];
   const q = $("q").value.trim().toLowerCase();
   $("warn").textContent = c.stale ? "⚠ این دسته در آخرین اجرا به‌روز نشد؛ داده‌ی قدیمی نمایش داده می‌شود." : "";
-  $("head").innerHTML = "<tr>" + cols.map(([h]) => `<th>${h}</th>`).join("") + "</tr>";
+  $("head").innerHTML = "<tr>" + cols.map(([h]) => `<th>${h}</th>`).join("") + "<th>نمودار</th></tr>";
   const items = c.items.filter(i => !q || [i.name, i.name_en, i.symbol, i.tag].some(v => v && String(v).toLowerCase().includes(q)));
-  $("rows").innerHTML = items.map(i => "<tr>" + cols.map(([, f], n) => `<td class="${n ? "n" : ""}">${f(i)}</td>`).join("") + "</tr>").join("")
-    || `<tr><td colspan="${cols.length}" class="mut">موردی پیدا نشد</td></tr>`;
+  $("rows").innerHTML = items.map(i => "<tr>" + cols.map(([, f], n) => `<td class="${n ? "n" : ""}">${f(i)}</td>`).join("")
+      + `<td><button class="tab chartbtn" data-tag="${esc(i.tag)}" aria-label="نمودار ${esc(i.name)}">📈</button></td></tr>`).join("")
+    || `<tr><td colspan="${cols.length + 1}" class="mut">موردی پیدا نشد</td></tr>`;
+}
+
+// ───────── نمودار تاریخچه ─────────
+// داده از history/<منبع>/<دسته>_<نماد>.csv با ستون‌های ts (ثانیه‌ی یونیکس) و price
+const DAY = 864e5;
+const RANGES = [["۱ روز", DAY], ["۱ هفته", 7 * DAY], ["۱ ماه", 30 * DAY], ["همه", Infinity]];
+let chart = null, chartState = null;
+
+async function loadHistory(src, tag) {
+  const r = await fetch(`history/${src}/${tag.replace(":", "_")}.csv?t=${Date.now()}`);
+  if (r.status === 404) return [];
+  if (!r.ok) throw new Error("HTTP " + r.status);
+  return (await r.text()).trim().split("\n").slice(1).map(l => {
+    const [t, p] = l.split(",");
+    return {x: +t * 1000, y: +p};
+  }).filter(p => isFinite(p.x) && isFinite(p.y));
+}
+
+async function openChart(tag) {
+  const d = srcData(curSrc), item = d.categories[curCat].items.find(i => i.tag === tag);
+  if (!item) return;
+  const st = chartState = {src: curSrc, item, pts: null, err: false, range: 1};
+  $("chTitle").textContent = `${item.name} — ${d.source.name}`;
+  $("chartBox").hidden = false;
+  $("chMsg").textContent = "در حال بارگذاری…";
+  $("chWrap").hidden = true;
+  $("chStats").innerHTML = "";
+  renderRanges();
+  $("chartBox").scrollIntoView({behavior: "smooth", block: "nearest"});
+  try { st.pts = await loadHistory(curSrc, tag); } catch (e) { st.err = true; }
+  if (chartState !== st) return; // در این فاصله مورد دیگری انتخاب شده
+  // اگر کمتر از یک هفته داده داریم، به‌جای «۱ هفته» کل داده را نشان بده
+  if (st.pts && st.pts.length > 1 && st.pts[st.pts.length - 1].x - st.pts[0].x < 7 * DAY) st.range = 3;
+  renderChart();
+}
+
+function closeChart() {
+  chartState = null;
+  if (chart) { chart.destroy(); chart = null; }
+  $("chartBox").hidden = true;
+}
+
+function renderRanges() {
+  $("chRanges").innerHTML = RANGES.map(([label], k) =>
+    `<button class="tab" data-k="${k}" aria-pressed="${chartState && chartState.range === k}">${label}</button>`).join("");
+}
+
+function renderChart() {
+  const st = chartState; if (!st) return;
+  const msg = t => { $("chMsg").textContent = t; };
+  renderRanges();
+  if (chart) { chart.destroy(); chart = null; }
+  $("chWrap").hidden = true;
+  $("chStats").innerHTML = "";
+  if (st.err) return msg("بارگذاری تاریخچه ممکن نشد.");
+  const all = st.pts || [];
+  if (!all.length) return msg("هنوز تاریخچه‌ای برای این مورد ثبت نشده است؛ بعد از چند اجرای workflow نمودار آماده می‌شود.");
+  const end = all[all.length - 1].x;
+  const pts = all.filter(p => p.x >= end - RANGES[st.range][1]);
+  if (pts.length < 2) return msg(`در این بازه فقط ${num(pts.length)} نقطه ثبت شده؛ برای نمودار حداقل دو نقطه لازم است.`);
+  if (typeof Chart === "undefined") return msg("کتابخانه‌ی نمودار بارگذاری نشد؛ اتصال اینترنت را بررسی کن.");
+  msg("");
+  $("chWrap").hidden = false;
+
+  const unit = st.item.unit === "usd" ? "$" : "تومان";
+  const cs = getComputedStyle(document.documentElement), col = n => cs.getPropertyValue(n).trim();
+  const short = pts[pts.length - 1].x - pts[0].x <= 2 * DAY;
+  const fmtX = v => new Date(v).toLocaleString("fa-IR", short ? {hour: "2-digit", minute: "2-digit"} : {month: "short", day: "numeric"});
+
+  chart = new Chart($("chCanvas"), {
+    type: "line",
+    data: {datasets: [{data: pts, borderColor: col("--acc"), backgroundColor: col("--acc") + "22",
+                       fill: true, borderWidth: 2, pointRadius: 0, pointHoverRadius: 4, tension: 0.2}]},
+    options: {
+      parsing: false, normalized: true, animation: false, responsive: true, maintainAspectRatio: false,
+      interaction: {mode: "nearest", axis: "x", intersect: false},
+      plugins: {
+        legend: {display: false},
+        tooltip: {callbacks: {title: i => new Date(i[0].parsed.x).toLocaleString("fa-IR"),
+                              label: c => num(c.parsed.y) + " " + unit}}
+      },
+      scales: {
+        x: {type: "linear", min: pts[0].x, max: pts[pts.length - 1].x,
+            ticks: {callback: fmtX, maxTicksLimit: 6, color: col("--mut")}, grid: {color: col("--line")}},
+        y: {ticks: {callback: v => num(v), color: col("--mut")}, grid: {color: col("--line")}}
+      }
+    }
+  });
+
+  const ys = pts.map(p => p.y), first = ys[0], last = ys[ys.length - 1];
+  $("chStats").innerHTML =
+    `<span>بیشترین: ${num(Math.max(...ys))}</span><span>کمترین: ${num(Math.min(...ys))}</span>`
+    + `<span>آخرین: ${num(last)} ${unit}</span>`
+    + (first ? `<span>تغییر در بازه: ${chg((last - first) / first * 100, null)}</span>` : "");
 }
 init();
 </script>
