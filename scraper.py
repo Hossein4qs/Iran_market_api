@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """اجرای همه‌ی منابع قیمت (پوشه‌ی sources/) -> برای هر منبع یک فایل data/<id>.json
 
-تگ هر قیمت  <دسته>:<نماد>  است (مثل currency:usd) و بین همه‌ی منابع یکسان است.
+تگ هر قیمت <دسته>:<نماد> است (مثل currency:usd) و بین همه‌ی منابع یکسان است.
+علاوه بر آن، قیمت هر تگ در history/<id>/<دسته>_<نماد>.csv هم ذخیره می‌شود
+(برای ساخت نمودار قیمت).
 """
 import json
 import sys
@@ -16,6 +18,8 @@ from sources.tags import make_tag
 
 OUT = Path("data")
 DEBUG = Path("debug")
+HISTORY = Path("history")
+HISTORY_EVERY_MIN = 60  # هر چند دقیقه یک نقطه در تاریخچه ذخیره شود
 TEHRAN = timezone(timedelta(hours=3, minutes=30))
 HEADERS = {
     "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -50,7 +54,7 @@ def scrape_source(session, src):
     """-> (دیکشنری فایل منبع، تعداد دسته‌های ناموفق)"""
     prev_cats = load_previous(src.ID)
     categories, failed = {}, 0
-    pages = {}          # چند دسته می‌توانند یک URL مشترک داشته باشند؛ هر URL یک بار دریافت می‌شود
+    pages = {}  # چند دسته می‌توانند یک URL مشترک داشته باشند؛ هر URL یک بار دریافت می‌شود
     for category, (title, path) in src.PAGES.items():
         url = src.BASE + path
         fetched = url not in pages
@@ -91,9 +95,47 @@ def check_unique_tags(src_id, categories):
     return len(seen)
 
 
+def _last_ts(path):
+    """timestamp آخرین ردیف فایل CSV (بدون خواندن کل فایل)؛ اگر نبود 0"""
+    try:
+        with path.open("rb") as f:
+            f.seek(0, 2)
+            f.seek(max(0, f.tell() - 64))
+            last = f.read().decode("utf-8", errors="ignore").strip().splitlines()[-1]
+        return int(last.split(",")[0])
+    except Exception:
+        return 0
+
+
+def append_history(src_id, categories, now):
+    """قیمت هر آیتم را به history/<src_id>/<tag>.csv اضافه می‌کند (ستون‌ها: ts,price)"""
+    ts = int(now.timestamp())
+    gap = HISTORY_EVERY_MIN * 60 - 300  # ۵ دقیقه تلورانس برای تأخیر GitHub Actions
+    added = 0
+    for cat in categories.values():
+        if cat.get("stale"):  # داده‌ی کهنه را وارد تاریخچه نکن
+            continue
+        for it in cat["items"]:
+            price = it.get("price")
+            if price is None:
+                continue
+            path = HISTORY / src_id / (it["tag"].replace(":", "_") + ".csv")
+            path.parent.mkdir(parents=True, exist_ok=True)
+            if ts - _last_ts(path) < gap:
+                continue
+            is_new = not path.exists()
+            with path.open("a", encoding="utf-8", newline="") as f:
+                if is_new:
+                    f.write("ts,price\n")
+                f.write(f"{ts},{price}\n")
+            added += 1
+    return added
+
+
 def main():
     OUT.mkdir(exist_ok=True)
-    dead = []          # منابعی که هیچ دسته‌شان خوانده نشد (فایل‌شان دست نمی‌خورد)
+    HISTORY.mkdir(exist_ok=True)
+    dead = []  # منابعی که هیچ دسته‌شان خوانده نشد (فایل‌شان دست نمی‌خورد)
     with requests.Session() as session:
         for src in SOURCES:
             categories, failed = scrape_source(session, src)
@@ -111,10 +153,11 @@ def main():
                 "updated_at_tehran": now.astimezone(TEHRAN).isoformat(timespec="seconds"),
                 "categories": categories,
             }, ensure_ascii=False, indent=2), encoding="utf-8")
-            print(f"✓ [{src.ID}] {total} قیمت ذخیره شد"
+            hist = append_history(src.ID, categories, now)
+            print(f"✓ [{src.ID}] {total} قیمت ذخیره شد، {hist} نقطه به تاریخچه اضافه شد"
                   + (f" ({failed} دسته ناموفق)" if failed else ""), file=sys.stderr)
     if dead:
-        sys.exit(1)    # بعد از ذخیره‌ی منابع سالم، اجرا را قرمز کن تا خبردار شوی
+        sys.exit(1)  # بعد از ذخیره‌ی منابع سالم، اجرا را قرمز کن تا خبردار شوی
 
 
 if __name__ == "__main__":
