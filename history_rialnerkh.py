@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """وارد کردن تاریخچه‌ی ریال نرخ از endpoint صفحه‌ی نمودارش به history/rialnerkh/*.csv
 
-اجرا (در ریشه‌ی ریپو، بعد از اینکه data/rialnerkh.json وجود دارد):
+اجرا از ریشه‌ی پروژه؛ بدون نیاز به GitHub یا data/rialnerkh.json:
     python import_rialnerkh.py                 # همه‌ی کدها
     python import_rialnerkh.py --only USD,EUR  # فقط چند کد (برای تست)
 
@@ -11,6 +11,7 @@
 """
 import argparse
 import json
+import ssl
 import sys
 import time
 import urllib.error
@@ -19,7 +20,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 SRC = "rialnerkh"
-RAW_URL = "https://raw.githubusercontent.com/Hossein4qs/Iran_market_api/main/data/rialnerkh.json"
 API = "https://www.rialnerkh.com/wp-json/rialnerkh/v1/navasan-history/{code}?days={days}"
 EVERY_MIN = 60   # باید با HISTORY_EVERY_MIN در scraper.py یکی باشد
 PAUSE = 1.5      # ثانیه بین درخواست‌ها (مودبانه به سرور)
@@ -39,10 +39,30 @@ BUB_SEKKEH BUB_BAHAR BUB_NIM BUB_ROB BUB_18AYAR BUB_GERAMI
 ALIASES = {}
 
 
-def fetch_json(code, days):
-    req = urllib.request.Request(API.format(code=code.lower(), days=days), headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return json.loads(r.read().decode("utf-8"))
+def fetch_json(code, days, retries=4):
+    """دریافت JSON با تلاش مجدد برای خطاهای موقت شبکه/TLS."""
+    url = API.format(code=code.lower(), days=days)
+    last_error = None
+
+    for attempt in range(retries + 1):
+        req = urllib.request.Request(url, headers=HEADERS)
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return json.loads(r.read().decode("utf-8"))
+        except (urllib.error.URLError, ssl.SSLError, TimeoutError,
+                ConnectionError, OSError, json.JSONDecodeError) as e:
+            last_error = e
+            if attempt < retries:
+                wait = min(2 ** attempt, 15)
+                print(
+                    f"! {code}: خطای موقت دریافت ({e}); "
+                    f"تلاش دوباره در {wait} ثانیه "
+                    f"({attempt + 1}/{retries})",
+                    file=sys.stderr,
+                )
+                time.sleep(wait)
+
+    raise last_error
 
 
 def parse_rows(rows):
@@ -60,35 +80,33 @@ def parse_rows(rows):
     return sorted(out.items())
 
 
-def _tags_from_json(text):
-    cats = json.loads(text)["categories"]
-    return [it["tag"] for c in cats.values() for it in c.get("items", []) if it.get("tag")]
+# نگاشت مستقل کدهای API به tag خروجی؛ نیازی به data/rialnerkh.json یا GitHub نیست.
+# برای کدهای معمول، نام فایل از category و کد ساخته می‌شود.
+CURRENCY_CODES = set("""
+USD EUR GBP AED_NOTE TRY JPY AUD NZD CAD SGD CHF PKR AZN NOK SEK DKK KWD OMR RUB BRL THB AFN INR CNY MYR GEL
+USD_SHERKAT USD_SHAKHS AED EUR_HAV GBP_HAV HAV_CAD_CHEQUE AUD_HAV MYR_HAV CNY_HAV TRY_HAV JPY_HAV
+""".split())
+CRYPTO_CODES = set("""
+BTC ETH XRP BCH EOS BNB USDT
+""".split())
+GOLD_CODES = set("""
+XAU USD_XAU 18AYAR SEKKEH BAHAR NIM ROB ABSHODEH GERAMI
+BUB_SEKKEH BUB_BAHAR BUB_NIM BUB_ROB BUB_18AYAR BUB_GERAMI
+""".split())
 
-
-def known_tags():
-    """tagها را از data/rialnerkh.json می‌خواند؛ اگر نبود یا خراب بود، از گیت‌هاب"""
-    path = Path("data") / f"{SRC}.json"
-    if path.exists():
-        try:
-            return _tags_from_json(path.read_text(encoding="utf-8-sig"))
-        except Exception as e:
-            print(f"! {path} خالی یا خراب است ({e.__class__.__name__}) → از گیت‌هاب می‌خوانم",
-                  file=sys.stderr)
-    try:
-        req = urllib.request.Request(RAW_URL, headers=HEADERS)
-        with urllib.request.urlopen(req, timeout=60) as r:
-            return _tags_from_json(r.read().decode("utf-8-sig"))
-    except Exception as e:
-        sys.exit(f"فایل tagها را نتوانستم بخوانم ({e}).\n"
-                 "اسکریپت را داخل پوشه‌ی کلون‌شده‌ی ریپو اجرا کن یا اینترنت را بررسی کن.")
-
-
-def match_tag(code, tags):
+def match_tag(code, tags=None):
+    """ساخت tag به‌صورت محلی، بدون فایل جانبی یا اتصال به GitHub."""
     if code in ALIASES:
         return ALIASES[code]
-    hits = [t for t in tags if t.split(":", 1)[-1].lower() == code.lower()]
-    return hits[0] if len(hits) == 1 else None
-
+    if code in CURRENCY_CODES:
+        category = "currency"
+    elif code in CRYPTO_CODES or code.startswith("MEX_"):
+        category = "crypto"
+    elif code in GOLD_CODES:
+        category = "gold"
+    else:
+        return None
+    return f"{category}:{code.lower()}"
 
 def merge_write(path, pts):
     existing = []
@@ -112,33 +130,86 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", help="کدها با کاما، مثل USD,EUR")
     ap.add_argument("--days", type=int, default=365)
+    ap.add_argument("--no-retry-failed", action="store_true",
+                    help="فایل خطاهای اجرای قبلی را به فهرست اضافه نکن")
     args = ap.parse_args()
 
-    codes = [c.strip().upper() for c in args.only.split(",")] if args.only else CODES
-    tags = known_tags()
-    unmatched, failed, total = [], [], 0
-    for code in codes:
-        tag = match_tag(code, tags)
+    failed_file = Path("data") / "failed_imports.json"
+    codes = [c.strip().upper() for c in args.only.split(",")] if args.only else list(CODES)
+
+    # اگر اجرای قبلی کدی را نتوانسته دریافت کند، در اجرای بعدی دوباره امتحانش کن.
+    if not args.only and not args.no_retry_failed and failed_file.exists():
+        try:
+            saved = json.loads(failed_file.read_text(encoding="utf-8"))
+            previous_codes = saved.get("codes", []) if isinstance(saved, dict) else []
+            codes.extend(c for c in previous_codes if c not in codes)
+        except (OSError, json.JSONDecodeError, AttributeError):
+            print(f"! فایل {failed_file} قابل خواندن نیست؛ از آن صرف‌نظر شد.",
+                  file=sys.stderr)
+
+    unmatched, failed, total = [], {}, 0
+
+    def import_one(code, retries=4):
+        nonlocal total
+        tag = match_tag(code)
         if tag is None:
             unmatched.append(code)
-            continue
+            return True
         try:
-            pts = parse_rows(fetch_json(code, args.days))
-        except (urllib.error.URLError, ValueError, TimeoutError) as e:
-            failed.append(f"{code} ({e})")
-            time.sleep(PAUSE)
-            continue
-        n = merge_write(Path("history") / SRC / (tag.replace(":", "_") + ".csv"), pts)
+            pts = parse_rows(fetch_json(code, args.days, retries=retries))
+        except (urllib.error.URLError, ssl.SSLError, ValueError, TimeoutError,
+                ConnectionError, OSError) as e:
+            failed[code] = str(e)
+            print(f"! {code}: دریافت ناموفق ماند: {e}", file=sys.stderr)
+            return False
+
+        path = Path("history") / SRC / (tag.replace(":", "_") + ".csv")
+        n = merge_write(path, pts)
         total += n
-        print(f"{code:>16} -> {tag:<28} {len(pts):5d} نقطه‌ی خام، {n:4d} اضافه شد", file=sys.stderr)
+        print(f"{code:>16} -> {tag:<28} {len(pts):5d} نقطه‌ی خام، {n:4d} اضافه شد",
+              file=sys.stderr)
+        failed.pop(code, None)
+        return True
+
+    # دور اصلی
+    for code in codes:
+        import_one(code)
         time.sleep(PAUSE)
+
+    # یک دور کوتاه دیگر فقط برای کدهایی که در همین اجرا شکست خوردند.
+    if failed:
+        retry_codes = list(failed)
+        print("\nتلاش دوباره فقط برای کدهای ناموفق: " + ", ".join(retry_codes),
+              file=sys.stderr)
+        for code in retry_codes:
+            time.sleep(PAUSE)
+            import_one(code, retries=2)
 
     print(f"\nجمعاً {total} نقطه اضافه شد.", file=sys.stderr)
     if unmatched:
-        print("جور نشد با هیچ tag (در ALIASES دستی وصل کن یا نادیده بگیر): " + ", ".join(unmatched),
-              file=sys.stderr)
-    if failed:
-        print("خطا در دریافت: " + "; ".join(failed), file=sys.stderr)
+        print("جور نشد با هیچ tag (در ALIASES دستی وصل کن یا نادیده بگیر): " +
+              ", ".join(unmatched), file=sys.stderr)
+
+    # فقط کدهای هنوز ناموفق را نگه دار تا اجرای بعدی دوباره امتحان شوند.
+    try:
+        if failed:
+            failed_file.parent.mkdir(parents=True, exist_ok=True)
+            failed_file.write_text(
+                json.dumps({"codes": list(failed), "errors": failed},
+                           ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            print("کدهای ناموفق برای اجرای بعدی ذخیره شدند: " + str(failed_file),
+                  file=sys.stderr)
+            print("خطاهای نهایی: " + "; ".join(
+                f"{code} ({error})" for code, error in failed.items()),
+                file=sys.stderr)
+        elif failed_file.exists():
+            failed_file.unlink()
+            print("همه‌ی دریافت‌ها موفق شدند؛ فایل خطاهای قبلی پاک شد.",
+                  file=sys.stderr)
+    except OSError as e:
+        print(f"! نتوانستم فایل خطاها را ذخیره/پاک کنم: {e}", file=sys.stderr)
 
 
 if __name__ == "__main__":
