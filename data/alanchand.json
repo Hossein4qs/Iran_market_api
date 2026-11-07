@@ -5,8 +5,8 @@
     "url": "https://alanchand.com"
   },
   "unit": "تومان (مگر آنکه در آیتم unit=usd باشد)",
-  "updated_at_utc": "2026-11-07T19:37:27+00:00",
-  "updated_at_tehran": "2026-11-07T23:07:27+03:30",
+  "updated_at_utc": "2026-11-07T23:00:14+00:00",
+  "updated_at_tehran": "2026-11-08T02:30:14+03:30",
   "categories": {
     "currency": {
       "title": "ارز",
@@ -19,8 +19,8 @@
           "name": "۲۶۶,۷۰۰",
           "quantity": 1,
           "buy": 264050,
-          "sell": 0.56,
-          "price": 132025.28,
+          "sell": 0,
+          "price": 132025,
           "per_usd": null
         },
         {
@@ -29,8 +29,8 @@
           "name": "۲۹۷,۲۰۰",
           "quantity": 1,
           "buy": 294200,
-          "sell": 0.54,
-          "price": 147100.27,
+          "sell": 0,
+          "price": 147100,
           "per_usd": 0.897
         },
         {
@@ -39,8 +39,8 @@
           "name": "۷۲,۶۱۰",
           "quantity": 1,
           "buy": 71880,
-          "sell": 0.56,
-          "price": 35940.28,
+          "sell": 0,
+          "price": 35940,
           "per_usd": 3.67
         },
         {
@@ -49,8 +49,8 @@
           "name": "۵,۴۰۰",
           "quantity": 1,
           "buy": 5240,
-          "sell": 0.55,
-          "price": 2620.275,
+          "sell": 0,
+          "price": 2620,
           "per_usd": 50.1
         },
         {
@@ -59,8 +59,8 @@
           "name": "۳۵۲,۵۰۰",
           "quantity": 1,
           "buy": 347200,
-          "sell": 0.56,
-          "price": 173600.28,
+          "sell": 0,
+          "price": 173600,
           "per_usd": 0.749
         },
         {
@@ -69,8 +69,8 @@
           "name": "۴۰,۰۴۰",
           "quantity": 1,
           "buy": 39240,
-          "sell": 0.6,
-          "price": 19620.3,
+          "sell": 0,
+          "price": 19620,
           "per_usd": 6.68
         },
         {
@@ -79,8 +79,8 @@
           "name": "۱۸۸,۸۰۰",
           "quantity": 1,
           "buy": 186000,
-          "sell": 0.53,
-          "price": 93000.265,
+          "sell": 0,
+          "price": 93000,
           "per_usd": 1.413
         },
         {
@@ -89,9 +89,9 @@
           "name": "۱۸۳,۱۰۰",
           "quantity": 1,
           "buy": 180400,
-          "sell": 0.6,
-          "price": 90200.3,
-          "per_usd": 1.457
+          "sell": 0,
+          "price": 90200,
+          "per_usd": 1.456
         },
         {
           "tag": "currency:3,255",
@@ -99,8 +99,8 @@
           "name": "۳,۲۵۵",
           "quantity": 1,
           "buy": 3190,
-          "sell": 0.61,
-          "price": 1595.305,
+          "sell": 0,
+          "price": 1595,
           "per_usd": 81.9
         },
         {
@@ -109,18 +109,18 @@
           "name": "۱۶,۹۳۰",
           "quantity": 1,
           "buy": 16590,
-          "sell": 0.59,
-          "price": 8295.295,
+          "sell": 0,
+          "price": 8295,
           "per_usd": 15.75
         },
         {
-          "tag": "currency:65,680",
-          "symbol": "65,680",
-          "name": "۶۵,۶۸۰",
+          "tag": "currency:65,660",
+          "symbol": "65,660",
+          "name": "۶۵,۶۶۰",
           "quantity": 1,
           "buy": 63700,
-          "sell": 0.61,
-          "price": 31850.305,
+          "sell": 0.03,
+          "price": 31850.015,
           "per_usd": 4.06
         },
         {
@@ -129,8 +129,8 @@
           "name": "۱۰۲,۸۰۰",
           "quantity": 1,
           "buy": 100700,
-          "sell": 0.58,
-          "price": 50350.29,
+          "sell": 0,
+          "price": 50350,
           "per_usd": 2.59
         },
         {
@@ -139,8 +139,8 @@
           "name": "۱۵۶,۹۰۰",
           "quantity": 1,
           "buy": 153800,
-          "sell": 0.57,
-          "price": 76900.285,
+          "sell": 0,
+          "price": 76900,
           "per_usd": 1.7
         },
         {
@@ -149,8 +149,8 @@
           "name": "۷۴,۰۲۰",
           "quantity": 1,
           "buy": 72540,
-          "sell": 0.54,
-          "price": 36270.27,
+          "sell": 0,
+          "price": 36270,
           "per_usd": 3.6
         },
         {
@@ -159,8 +159,8 @@
           "name": "۷,۹۵۰",
           "quantity": 1,
           "buy": 7790,
-          "sell": 0.5,
-          "price": 3895.25,
+          "sell": 0,
+          "price": 3895,
           "per_usd": 33.6
         },
         {
@@ -169,8 +169,8 @@
           "name": "۶۹۲,۷۰۰",
           "quantity": 1,
           "buy": 678800,
-          "sell": 0.62,
-          "price": 339400.31,
+          "sell": 0,
+          "price": 339400,
           "per_usd": 0.385
         },
         {
@@ -179,8 +179,8 @@
           "name": "۲,۸۳۰",
           "quantity": 1,
           "buy": 2770,
-          "sell": 0.7,
-          "price": 1385.35,
+          "sell": 0,
+          "price": 1385,
           "per_usd": 94.1
         },
         {
@@ -189,8 +189,8 @@
           "name": "۹۶۴",
           "quantity": 1,
           "buy": 945,
-          "sell": 0.62,
-          "price": 472.81,
+          "sell": 0,
+          "price": 472.5,
           "per_usd": 277
         },
         {
@@ -199,8 +199,8 @@
           "name": "۱۶۸,۳۰۰",
           "quantity": 1,
           "buy": 164900,
-          "sell": 0.53,
-          "price": 82450.265,
+          "sell": 0,
+          "price": 82450,
           "per_usd": 1.585
         },
         {
@@ -209,8 +209,8 @@
           "name": "۷۱,۰۶۰",
           "quantity": 1,
           "buy": 69640,
-          "sell": 0.56,
-          "price": 34820.28,
+          "sell": 0,
+          "price": 34820,
           "per_usd": 3.75
         },
         {
@@ -219,8 +219,8 @@
           "name": "۴,۱۰۰",
           "quantity": 1,
           "buy": 4020,
-          "sell": 0.61,
-          "price": 2010.305,
+          "sell": 0,
+          "price": 2010,
           "per_usd": 65
         },
         {
@@ -229,19 +229,19 @@
           "name": "۲۶,۹۴۰",
           "quantity": 1,
           "buy": 26400,
-          "sell": 0.59,
-          "price": 13200.295,
+          "sell": 0,
+          "price": 13200,
           "per_usd": 9.9
         },
         {
-          "tag": "currency:325,000",
-          "symbol": "325,000",
-          "name": "۳۲۵,۰۰۰",
+          "tag": "currency:325,200",
+          "symbol": "325,200",
+          "name": "۳۲۵,۲۰۰",
           "quantity": 1,
-          "buy": 318500,
-          "sell": 0.55,
-          "price": 159250.275,
-          "per_usd": 0.821
+          "buy": 318700,
+          "sell": 0,
+          "price": 159350,
+          "per_usd": 0.82
         },
         {
           "tag": "currency:73,240",
@@ -249,8 +249,8 @@
           "name": "۷۳,۲۴۰",
           "quantity": 1,
           "buy": 71780,
-          "sell": 0.35,
-          "price": 35890.175,
+          "sell": 0,
+          "price": 35890,
           "per_usd": 3.64
         },
         {
@@ -259,8 +259,8 @@
           "name": "۱۹,۵۵۰",
           "quantity": 1,
           "buy": 19160,
-          "sell": 0.71,
-          "price": 9580.355,
+          "sell": 0,
+          "price": 9580,
           "per_usd": 13.64
         },
         {
@@ -269,8 +269,8 @@
           "name": "۲۸,۱۸۰",
           "quantity": 1,
           "buy": 27340,
-          "sell": 0.56,
-          "price": 13670.28,
+          "sell": 0,
+          "price": 13670,
           "per_usd": 9.46
         },
         {
@@ -279,8 +279,8 @@
           "name": "۱۴۷,۹۰۰",
           "quantity": 1,
           "buy": 143460,
-          "sell": 0.5,
-          "price": 71730.25,
+          "sell": 0.01,
+          "price": 71730.005,
           "per_usd": 1.803
         },
         {
@@ -289,8 +289,8 @@
           "name": "۲۰۷,۹۰۰",
           "quantity": 1,
           "buy": 201660,
-          "sell": 0.54,
-          "price": 100830.27,
+          "sell": 0,
+          "price": 100830,
           "per_usd": 1.283
         },
         {
@@ -299,8 +299,8 @@
           "name": "۳۴,۰۲۰",
           "quantity": 1,
           "buy": 33000,
-          "sell": 0.58,
-          "price": 16500.29,
+          "sell": 0,
+          "price": 16500,
           "per_usd": 7.84
         },
         {
@@ -309,8 +309,8 @@
           "name": "۸۶۰,۰۰۰",
           "quantity": 1,
           "buy": 834200,
-          "sell": 0.56,
-          "price": 417100.28,
+          "sell": 0,
+          "price": 417100,
           "per_usd": 0.31
         },
         {
@@ -319,8 +319,8 @@
           "name": "۳۹,۷۶۰",
           "quantity": 1,
           "buy": 38560,
-          "sell": 0.5,
-          "price": 19280.25,
+          "sell": 0,
+          "price": 19280,
           "per_usd": 6.71
         },
         {
@@ -329,8 +329,8 @@
           "name": "۷۰۶,۹۲۰",
           "quantity": 1,
           "buy": 685720,
-          "sell": 0.54,
-          "price": 342860.27,
+          "sell": 0,
+          "price": 342860,
           "per_usd": 0.377
         },
         {
@@ -339,8 +339,8 @@
           "name": "۲۸,۹۲۰",
           "quantity": 1,
           "buy": 28060,
-          "sell": 0.55,
-          "price": 14030.275,
+          "sell": 0,
+          "price": 14030,
           "per_usd": 9.23
         },
         {
@@ -349,8 +349,8 @@
           "name": "۷۶,۲۰۰",
           "quantity": 1,
           "buy": 73920,
-          "sell": 0.29,
-          "price": 36960.145,
+          "sell": 0,
+          "price": 36960,
           "per_usd": 3.5
         },
         {
@@ -359,8 +359,8 @@
           "name": "۳,۰۵۰",
           "quantity": 1,
           "buy": 2960,
-          "sell": 0.49,
-          "price": 1480.245,
+          "sell": 0,
+          "price": 1480,
           "per_usd": 87.4
         },
         {
@@ -369,8 +369,8 @@
           "name": "۲۱۸,۸۹۰",
           "quantity": 1,
           "buy": 212325,
-          "sell": 0.56,
-          "price": 106162.78,
+          "sell": 0,
+          "price": 106162.5,
           "per_usd": 1.218
         },
         {
@@ -379,8 +379,8 @@
           "name": "۴۸,۴۰۰",
           "quantity": 1,
           "buy": 46940,
-          "sell": 0.53,
-          "price": 23470.265,
+          "sell": 0,
+          "price": 23470,
           "per_usd": 5.51
         },
         {
@@ -389,8 +389,8 @@
           "name": "۱۷۳",
           "quantity": 1,
           "buy": 168,
-          "sell": 0.57,
-          "price": 84.285,
+          "sell": 0,
+          "price": 84,
           "per_usd": 1546
         },
         {
@@ -399,8 +399,8 @@
           "name": "۲۶۶,۱۰۰",
           "quantity": 1,
           "buy": 263400,
-          "sell": 0.56,
-          "price": 131700.28,
+          "sell": 0,
+          "price": 131700,
           "per_usd": null
         },
         {
@@ -409,8 +409,8 @@
           "name": "۲۶۶,۳۰۰",
           "quantity": 1,
           "buy": 263600,
-          "sell": 0.56,
-          "price": 131800.28,
+          "sell": 0,
+          "price": 131800,
           "per_usd": null
         },
         {
@@ -419,8 +419,8 @@
           "name": "۲۶۶,۵۰۰",
           "quantity": 1,
           "buy": 263800,
-          "sell": 0.56,
-          "price": 131900.28,
+          "sell": 0,
+          "price": 131900,
           "per_usd": null
         }
       ]
@@ -730,7 +730,9 @@
           "bubble": null,
           "bubble_percent": null
         }
-      ]
+      ],
+      "stale": true,
+      "error": "فقط 0 ردیف پیدا شد (حداقل 4) ؛ ساختار صفحه احتمالاً عوض شده"
     },
     "crypto": {
       "title": "ارز دیجیتال",
