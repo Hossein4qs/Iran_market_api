@@ -5,8 +5,8 @@
     "url": "https://alanchand.com"
   },
   "unit": "تومان (مگر آنکه در آیتم unit=usd باشد)",
-  "updated_at_utc": "2026-11-14T23:12:58+00:00",
-  "updated_at_tehran": "2026-11-15T02:42:58+03:30",
+  "updated_at_utc": "2026-11-15T02:40:13+00:00",
+  "updated_at_tehran": "2026-11-15T06:10:13+03:30",
   "categories": {
     "currency": {
       "title": "ارز",
@@ -84,13 +84,13 @@
           "per_usd": 1.427
         },
         {
-          "tag": "currency:182,500",
-          "symbol": "182,500",
-          "name": "۱۸۲,۵۰۰",
+          "tag": "currency:182,600",
+          "symbol": "182,600",
+          "name": "۱۸۲,۶۰۰",
           "quantity": 1,
-          "buy": 179800,
-          "sell": 0,
-          "price": 89900,
+          "buy": 179900,
+          "sell": 0.05,
+          "price": 89950.025,
           "per_usd": 1.476
         },
         {
@@ -274,13 +274,13 @@
           "per_usd": 9.57
         },
         {
-          "tag": "currency:148,920",
-          "symbol": "148,920",
-          "name": "۱۴۸,۹۲۰",
+          "tag": "currency:148,900",
+          "symbol": "148,900",
+          "name": "۱۴۸,۹۰۰",
           "quantity": 1,
-          "buy": 144460,
-          "sell": 0,
-          "price": 72230,
+          "buy": 144440,
+          "sell": 0.01,
+          "price": 72220.005,
           "per_usd": 1.81
         },
         {
